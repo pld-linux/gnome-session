@@ -3,12 +3,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.3.7
+Version:	2.3.90
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	98cf00fd90e7a68d6f54983590b24e14
+# Source0-md5:	5b5f895f9f0d3f00e080fb4bbc01a6b9
 #Patch0:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.3.3
@@ -17,19 +17,19 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	gnome-common >= 2.3.0
-BuildRequires:	gtk+2-devel >= 2.2.2
+BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	intltool
-BuildRequires:	libgnomecanvas-devel >= 2.3.6
-BuildRequires:	libgnomeui-devel >= 2.3.6
+BuildRequires:	libgnomecanvas-devel >= 2.4.0
+BuildRequires:	libgnomeui-devel >= 2.3.7
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel
+BuildRequires:	pango-devel >= 1.2.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires:	control-center >= 2.3.5
-Requires:	libgnomeui >= 2.3.6
+Requires:	libgnomeui >= 2.3.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,9 +74,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang %{name} --with-gnome --all-name
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
+
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -fr $RPM_BUILD_ROOT
