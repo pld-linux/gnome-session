@@ -1,0 +1,12 @@
+diff -urN aa/gnome-session-2.7.4/gnome-session/session-properties.desktop.in gnome-session-2.7.4/gnome-session/session-properties.desktop.in
+--- aa/gnome-session-2.7.4/gnome-session/session-properties.desktop.in	2002-12-10 19:32:09.000000000 +0100
++++ gnome-session-2.7.4/gnome-session/session-properties.desktop.in	2004-07-26 13:36:46.383655456 +0200
+@@ -7,7 +7,7 @@
+ Terminal=false
+ Type=Application
+ StartupNotify=true
+-Categories=Application;Settings;AdvancedSettings;
++Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-session
+ X-GNOME-Bugzilla-Component=gnome-session
