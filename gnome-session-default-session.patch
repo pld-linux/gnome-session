@@ -34,11 +34,11 @@ diff -Nuard gnome-session-2.4.0.orig/po/gnome-session-2.0.pot gnome-session-2.4.
 @@ -441,6 +441,10 @@
  msgstr ""
  
- #: gnome-session/splash-widget.c:48
+ #: gnome-session/splash-widget.c:49
 +msgid "CD Device Handler"
 +msgstr ""
 +
-+#: gnome-session/splash-widget.c:49
++#: gnome-session/splash-widget.c:50
  msgid "Desktop Settings"
  msgstr ""
  
@@ -48,11 +48,11 @@ diff -Nuard gnome-session-2.4.0.orig/po/pl.po gnome-session-2.4.0/po/pl.po
 @@ -478,6 +478,10 @@
  msgstr "Nautilus"
  
- #: gnome-session/splash-widget.c:48
+ #: gnome-session/splash-widget.c:49
 +msgid "CD Device Handler"
 +msgstr "Obsługa płyt CD"
 +
-+#: gnome-session/splash-widget.c:49
++#: gnome-session/splash-widget.c:50
  msgid "Desktop Settings"
  msgstr "Ustawienia środowiska"
  
