@@ -7,7 +7,7 @@ Version:	2.0.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnomecanvas-devel >= 2.0.1
@@ -65,6 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %find_lang %{name} --with-gnome --all-name
+mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %clean
