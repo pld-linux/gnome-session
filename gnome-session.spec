@@ -68,6 +68,8 @@ rm -fr $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 /usr/bin/scrollkeeper-update
+GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`; export GCONF_CONFIG_SOURCE
+/usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 2>&1
 
 %postun
 /sbin/ldconfig
@@ -77,6 +79,7 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
+%{_sysconfdir}/gconf/schemas/*
 %{_datadir}/control-center-2.0
 %{_datadir}/gnome
 %{_datadir}/pixmaps/splash
