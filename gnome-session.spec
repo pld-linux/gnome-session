@@ -12,6 +12,7 @@ Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnomecanvas-devel >= 2.0.1
 BuildRequires:	libgnomeui-devel >= 2.0.1
+BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	GConf2-devel >= 1.2.0
 BuildRequires:	esound-devel >= 0.2.28
 BuildRequires:	pango-devel
@@ -51,7 +52,7 @@ GNOME.
 intltoolize --copy --force
 glib-gettextize --copy --force
 %{__libtoolize}
-aclocal
+aclocal -I /usr/share/aclocal/gnome2-macros
 %{__autoconf}
 %{__automake}
 %configure 
