@@ -6,40 +6,40 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.9.4
-Release:	1
+Version:	2.10.0
+Release:	0.1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	85077a3dc14ce353bda22408f78e92c3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.10/%{name}-%{version}.tar.bz2
+# Source0-md5:	cbeb2db49dac11bf8088e6b025265fff
 Source1:	%{name}-gnome.desktop
-Patch0:		%{name}-default-session.patch
+#Patch0:		%{name}-default-session.patch
 Patch1:		%{name}-openbox_wm.patch
 Patch2:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.9.2
+BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-keyring >= 0.4.1
-BuildRequires:	gtk+2-devel >= 2:2.6.2
+BuildRequires:	gnome-keyring >= 0.4.2
+BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.9.1
+BuildRequires:	libgnomeui-devel >= 2.10.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.8.0
+BuildRequires:	pango-devel >= 1:1.8.1
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	xft-devel >= 2.1
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
-Requires:	control-center >= 1:2.9.4
-Requires:	gnome-keyring >= 0.4.1
+Requires:	control-center >= 1:2.10.0
+Requires:	gnome-keyring >= 0.4.2
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.9.1
+Requires:	libgnomeui >= 2.10.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -75,7 +75,7 @@ Standardowy ekran startowy GNOME.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1 needs update
 %patch1 -p1
 %patch2 -p1
 
