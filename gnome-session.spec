@@ -4,15 +4,17 @@ Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.3.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-locale-sp.patch
 URL:		http://www.gnome.org/
+BuildRequires:	GConf2-devel >= 2.3.0
+BuildRequires:	Xft-devel >= 2.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.29
-BuildRequires:	GConf2-devel >= 2.3.0
 BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
@@ -23,12 +25,11 @@ BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	Xft-devel >= 2.1
-Requires:	libgnomeui >= 2.2.0
-Requires:	control-center >= 2.2.0
 Requires(post,postun):	/sbin/ldconfig
 #Requires(post,postun):	/usr/bin/scrollkeeper-update
 Requires(post):	GConf2
+Requires:	control-center >= 2.2.0
+Requires:	libgnomeui >= 2.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,6 +51,9 @@ GNOME.
 
 %prep
 %setup -q
+%patch -p1
+
+mv -f po/{sp,sr@cyrillic}.po
 
 %build
 intltoolize --copy --force
@@ -87,5 +91,5 @@ rm -fr $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/control-center-2.0
 %{_datadir}/gnome/*
-%{_datadir}/pixmaps/splash
+%{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
