@@ -3,7 +3,7 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.1.5
+Version:	2.1.90
 Release:	1
 License:	LGPL
 Group:		X11/Applications
@@ -12,10 +12,10 @@ Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	esound-devel >= 0.2.3
 BuildRequires:	GConf2-devel >= 1.2.1-10
 BuildRequires:	gnome-common >= 1.2.4
-BuildRequires:	gtk+2-devel >= 2.1.3
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libgnomecanvas-devel >= 2.1.5
 BuildRequires:	libgnomeui-devel >= 2.1.5
@@ -26,7 +26,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRequires:	Xft-devel >= 2.1
 Requires:	libgnomeui >= 2.1.5
-Requires:	control-center >= 2.1.2
+Requires:	control-center >= 2.1.5
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	/usr/bin/scrollkeeper-update
 Requires(post):	GConf2
