@@ -78,3 +78,4 @@ TryExec=gnome-session
 # no icon yet, only the top three are currently used
 Icon=
 Type=Application
+# vi: encoding=utf-8
