@@ -34,7 +34,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
-Requires:	control-center >= 2.5.90
+Requires:	control-center >= 1:2.5.90
 Requires:	gnome-keyring >= 0.1.91
 Requires:	libgnomeui >= 2.5.90
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
