@@ -3,24 +3,24 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.3.6.2
+Version:	2.3.7
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	6bf54a3f0716fc521e6e27b05fcc2031
+# Source0-md5:	98cf00fd90e7a68d6f54983590b24e14
 #Patch0:		%{name}-locale-sr.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.3.0
+BuildRequires:	GConf2-devel >= 2.3.3
 BuildRequires:	Xft-devel >= 2.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gnome-common >= 1.2.4
-BuildRequires:	gtk+2-devel >= 2.2.1
+BuildRequires:	gnome-common >= 2.3.0
+BuildRequires:	gtk+2-devel >= 2.2.2
 BuildRequires:	intltool
-BuildRequires:	libgnomecanvas-devel >= 2.3.0
-BuildRequires:	libgnomeui-devel >= 2.3.3.1-2
+BuildRequires:	libgnomecanvas-devel >= 2.3.6
+BuildRequires:	libgnomeui-devel >= 2.3.6
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel
@@ -28,8 +28,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
-Requires:	control-center >= 2.3.3-2
-Requires:	libgnomeui >= 2.3.3.1-2
+Requires:	control-center >= 2.3.5
+Requires:	libgnomeui >= 2.3.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -66,6 +66,7 @@ glib-gettextize --copy --force
 %{__automake}
 %configure \
 	--disable-schemas-install
+
 %{__make}
 
 %install
