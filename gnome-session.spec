@@ -3,7 +3,7 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.2.0
+Version:	2.2.0.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
@@ -23,7 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
-BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	Xft-devel >= 2.1
 Requires:	libgnomeui >= 2.1.5
 Requires:	control-center >= 2.2.0
