@@ -10,10 +10,10 @@ Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	GConf2-devel >= 1.2.1
 BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	gtk+2-devel >= 2.1.0
 BuildRequires:	intltool
@@ -23,6 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.1-7
 Requires:	libgnomeui >= 2.1.2
 Requires:	control-center >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
