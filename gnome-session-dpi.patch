@@ -1,7 +1,7 @@
 diff -Nuard gnome-session-2.4.1.orig/gnome-session/main.c gnome-session-2.4.1/gnome-session/main.c
 --- gnome-session-2.4.1.orig/gnome-session/main.c	2003-10-14 12:47:52.000000000 +0200
-+++ gnome-session-2.4.1/gnome-session/main.c	2003-11-13 00:20:03.000000000 +0100
-@@ -419,9 +419,22 @@
++++ gnome-session-2.4.1/gnome-session/main.c	2003-11-13 12:37:24.000000000 +0100
+@@ -419,9 +419,21 @@
    n_screens = gdk_display_get_n_screens (display);
    for (i = 0; i < n_screens; i++)
      {
@@ -15,16 +15,15 @@ diff -Nuard gnome-session-2.4.1.orig/gnome-session/main.c gnome-session-2.4.1/gn
 +      width_mm = gdk_screen_get_width_mm(screen);
 +      width_px  = gdk_screen_get_width(screen);
 +
-+      xres = (((double)width_px * 25.4) / (double)width_mm);
++      xres = ((((double)width_px) * 25.4) / ((double)width_mm));
 +      dpi = (xres + 0.5);
 +
 +      gconf_client_set_float (client, "/desktop/gnome/font_rendering/dpi", dpi ,NULL);
-+      g_print ("KURWA %d\n",dpi);
 +
        if (get_resolution (client, i, keys, &width, &height))
  	{
  	  XRRScreenSize *sizes;
-@@ -466,6 +479,7 @@
+@@ -466,6 +478,7 @@
  						  rate,
  						  GDK_CURRENT_TIME);
  	    }
