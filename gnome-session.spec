@@ -26,8 +26,6 @@ BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-keyring >= 0.2.0
 BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
-BuildRequires:	libbonoboui-devel >= 2.6.0
-BuildRequires:	libgnomecanvas-devel >= 2.7.1
 BuildRequires:	libgnomeui-devel >= 2.7.1
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
