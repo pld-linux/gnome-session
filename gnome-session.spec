@@ -1,15 +1,18 @@
-Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment.
+Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
+Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	1.5.18
 Release:	0.1
 License:	LGPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 URL:		http://www.gnome.org/
 BuildRequires:	libgnomecanvas-devel
 BuildRequires:	libgnomeui-devel
 BuildRequires:	pkgconfig
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	/usr/bin/scrollkeeper-update
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _prefix         /usr/X11R6
 %define         _mandir         %{_prefix}/man
@@ -19,11 +22,18 @@ BuildRequires:	pkgconfig
 GNOME2 (GNU Network Object Model Environment) is a user-friendly set of
 applications and desktop tools to be used in conjunction with a window
 manager for the X Window System. GNOME2 is similar in purpose and scope
-to CDE and KDE, but GNOME2 is based completely on free software. The
-gnome-core package includes the basic programs and libraries that are
-needed to install GNOME2.
+to CDE and KDE, but GNOME2 is based completely on free software.
 
 GNOME2 session provides the session tools for the the gnome desktop.
+
+%description -l pl
+GNOME2 (GNU Network Object Model Environment) to zestaw przyjaznych
+dla u¿ytkownika aplikacji i narzêdzi do u¿ywania w po³±czeniu z
+zarz±dc± okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
+ca³kowicie na wolnym oprogramowaniu.
+
+Pakiet gnome-session zawiera narzêdzia do obs³ugi sesji dla desktopu
+GNOME.
 
 %prep
 %setup -q
