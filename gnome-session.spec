@@ -27,7 +27,7 @@ BuildRequires:	Xft-devel >= 2.1
 Requires:	libgnomeui >= 2.2.0
 Requires:	control-center >= 2.2.0
 Requires(post,postun):	/sbin/ldconfig
-Requires(post,postun):	/usr/bin/scrollkeeper-update
+#Requires(post,postun):	/usr/bin/scrollkeeper-update
 Requires(post):	GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -78,8 +78,7 @@ rm -fr $RPM_BUILD_ROOT
 /sbin/ldconfig
 %gconf_schema_install
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
