@@ -3,32 +3,33 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.5.4
+Version:	2.5.90
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	8fff0fa7020e065f1846bb26572e62a0
+# Source0-md5:	9499ab6266698a3abca764f39d55a48e
 Source1:	%{name}-gnome.desktop
 Source2:	http://krzak.linux.net.pl/pld-gnome-splash.png
 # Source2-md5:	f1dbeb6a93c0ebf68239f495b23b22f0
 Patch0:		%{name}-default-session.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
+BuildRequires:	GConf2-devel >= 2.5.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	intltool
-BuildRequires:	libtool
-BuildRequires:	pkgconfig
-BuildRequires:	libwrap-devel
 BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gtk+2-devel >= 2.3.1
-BuildRequires:	Xft-devel >= 2.1
-BuildRequires:	GConf2-devel >= 2.5.0
 BuildRequires:	gnome-common >= 2.4.0
+BuildRequires:	gtk+2-devel >= 2.3.1
+BuildRequires:	intltool
+BuildRequires:	libbonoboui-devel >= 2.5.0
 BuildRequires:	libgnomecanvas-devel >= 2.5.0
 BuildRequires:	libgnomeui-devel >= 2.5.0
-BuildRequires:	libbonoboui-devel >= 2.5.0
+BuildRequires:	libtool
+BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel >= 1.3.1
+BuildRequires:	perl-base
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
@@ -56,6 +57,9 @@ GNOME.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
+mv po/{no,nb}.po
 
 %build
 intltoolize --copy --force
