@@ -3,7 +3,7 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.3.0
+Version:	2.3.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
@@ -58,15 +58,14 @@ glib-gettextize --copy --force
 %{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
-%configure 
+%configure \
+	--disable-schemas-install
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/%{name} \
-	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+	DESTDIR=$RPM_BUILD_ROOT 
 
 %find_lang %{name} --with-gnome --all-name
 mv ChangeLog main-ChangeLog
@@ -77,12 +76,10 @@ rm -fr $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/bin/scrollkeeper-update
 %gconf_schema_install
 
 %postun
 /sbin/ldconfig
-/usr/bin/scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -93,4 +90,3 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/*
 %{_datadir}/pixmaps/splash
 %{_mandir}/man[15]/*
-%{_omf_dest_dir}/%{name}
