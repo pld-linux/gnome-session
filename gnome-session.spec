@@ -14,8 +14,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.10/%{name}-%{ver
 # Source0-md5:	cbeb2db49dac11bf8088e6b025265fff
 Source1:	%{name}-gnome.desktop
 #Patch0:		%{name}-default-session.patch
-Patch1:		%{name}-openbox_wm.patch
-Patch2:		%{name}-desktop.patch
+Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-less_verbose.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	autoconf
