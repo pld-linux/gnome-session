@@ -3,12 +3,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.5.1
-Release:	2
+Version:	2.5.2
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	6aa2254dd95b3cafcb109888c7d75428
+# Source0-md5:	a8dfd65f921a41641e3bcb5ff8d2da59
 Source1:	gnome-session-gnome.desktop
 Source2:	http://krzak.linux.net.pl/pld-gnome-splash.png
 # Source2-md5:	f1dbeb6a93c0ebf68239f495b23b22f0
