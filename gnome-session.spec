@@ -20,6 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	gnome-common >= 2.4.0
+BuildRequires:	gnome-keyring
 BuildRequires:	gtk+2-devel >= 2.3.1
 BuildRequires:	intltool
 BuildRequires:	libbonoboui-devel >= 2.5.0
