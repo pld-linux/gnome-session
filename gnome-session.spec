@@ -7,7 +7,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.10.0
-Release:	0.1
+Release:	0.2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.10/%{name}-%{version}.tar.bz2
@@ -25,7 +25,7 @@ BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-keyring >= 0.4.2
 BuildRequires:	gtk+2-devel >= 2:2.6.4
 BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.10.0
+BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel >= 1:1.8.1
@@ -39,7 +39,7 @@ Requires:	control-center >= 1:2.10.0
 Requires:	gnome-keyring >= 0.4.2
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.10.0
+Requires:	libgnomeui >= 2.10.0-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
