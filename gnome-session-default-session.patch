@@ -1,0 +1,58 @@
+diff -Nuard gnome-session-2.4.0.orig/gnome-session/default.in gnome-session-2.4.0/gnome-session/default.in
+--- gnome-session-2.4.0.orig/gnome-session/default.in	2003-06-06 16:03:45.000000000 +0200
++++ gnome-session-2.4.0/gnome-session/default.in	2003-09-23 21:57:04.000000000 +0200
+@@ -8,7 +8,7 @@
+ # The clients must be numbered from 0 to the value of num_clients - 1.
+ 
+ [Default]
+-num_clients=4
++num_clients=5
+ 0,id=default0
+ 0,Priority=0
+ 0,RestartCommand=gnome-smproxy --sm-client-id default0
+@@ -21,3 +21,6 @@
+ 3,id=default3
+ 3,Priority=40
+ 3,RestartCommand=nautilus --no-default-window --sm-client-id default3
++4,id=default4
++4,Priority=40
++4,RestartCommand=magicdev --sm-client-id default4
+diff -Nuard gnome-session-2.4.0.orig/gnome-session/splash-widget.c gnome-session-2.4.0/gnome-session/splash-widget.c
+--- gnome-session-2.4.0.orig/gnome-session/splash-widget.c	2003-06-30 16:45:18.000000000 +0200
++++ gnome-session-2.4.0/gnome-session/splash-widget.c	2003-09-23 21:08:58.000000000 +0200
+@@ -45,6 +45,7 @@
+ 	{ N_("The Panel"),               "gnome-panel",           "gnome-panel.png" },
+ 	{ N_("Session Manager Proxy"),   "gnome-smproxy",         "gnome-session.png" },
+ 	{ N_("Nautilus"),                "nautilus",              "gnome-ccdesktop.png" },
++	{ N_("CD Device Handler"),       "magicdev",              "gnome-dev-cdrom.png" },
+ 	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings.png" }
+ };
+ 
+diff -Nuard gnome-session-2.4.0.orig/po/gnome-session-2.0.pot gnome-session-2.4.0/po/gnome-session-2.0.pot
+--- gnome-session-2.4.0.orig/po/gnome-session-2.0.pot	2003-08-13 15:07:04.000000000 +0200
++++ gnome-session-2.4.0/po/gnome-session-2.0.pot	2003-09-23 21:12:39.000000000 +0200
+@@ -441,6 +441,10 @@
+ msgstr ""
+ 
+ #: gnome-session/splash-widget.c:48
++msgid "CD Device Handler"
++msgstr ""
++
++#: gnome-session/splash-widget.c:49
+ msgid "Desktop Settings"
+ msgstr ""
+ 
+diff -Nuard gnome-session-2.4.0.orig/po/pl.po gnome-session-2.4.0/po/pl.po
+--- gnome-session-2.4.0.orig/po/pl.po	2003-08-13 15:07:15.000000000 +0200
++++ gnome-session-2.4.0/po/pl.po	2003-09-23 21:35:37.000000000 +0200
+@@ -478,6 +478,10 @@
+ msgstr "Nautilus"
+ 
+ #: gnome-session/splash-widget.c:48
++msgid "CD Device Handler"
++msgstr "Obsługa płyt CD"
++
++#: gnome-session/splash-widget.c:49
+ msgid "Desktop Settings"
+ msgstr "Ustawienia środowiska"
+ 
