@@ -41,6 +41,7 @@ Requires(post):	GConf2
 Requires:	control-center >= 1:2.6.0
 Requires:	gnome-keyring >= 0.2.0
 Requires:	gnome-splash
+Requires:	gnome-wm
 Requires:	libgnomeui >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
