@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnomecanvas-devel
 BuildRequires:	libgnomeui-devel
@@ -38,6 +39,7 @@ GNOME.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 intltoolize --copy --force
@@ -75,7 +77,6 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/control-center
 %{_datadir}/control-center-2.0
 %{_datadir}/gnome
 %{_datadir}/pixmaps/splash
