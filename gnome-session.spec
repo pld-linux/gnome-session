@@ -16,6 +16,7 @@ BuildRequires:	Xft-devel >= 2.1
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.30
+BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	gtk+2-devel >= 2.2.4
 BuildRequires:	intltool
 BuildRequires:	libgnomecanvas-devel >= 2.4.0
