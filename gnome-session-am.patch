@@ -8,3 +8,23 @@ diff -Nur gnome-session-1.5.19/smproxy/Makefile.am gnome-session-1.5.19.new/smpr
 -man1_MANS = smproxy.man
 -
  EXTRA_DIST = README.gnome
+--- gnome-session-1.5.20/gnome-session/Makefile.am.wiget	Wed May 29 04:14:06 2002
++++ gnome-session-1.5.20/gnome-session/Makefile.am	Wed May 29 04:20:08 2002
+@@ -30,7 +30,7 @@
+ 	-DDATADIR=\""$(datadir)"\"                              \
+ 	$(NULL)
+ 
+-LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
++LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
+ 
+ if SESSION
+ @INTLTOOL_DESKTOP_RULE@
+@@ -45,6 +45,8 @@
+ 	gnome-session-properties
+ endif
+ 
++gnome_session_LDADD = $(LDADD) $(LIBWRAP_LIBS)
++
+ splash_test_SOURCES = \
+ 	splash.c	\
+ 	splash.h	\
