@@ -4,14 +4,12 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.4.1
-Release:	5
+Release:	6
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	da92740dd8a7f316b2bc4a295fd94136
 Source1:	gnome-session-gnome.desktop
-Source2:	http://krzak.linux.net.pl/pld-gnome-splash.png
-# Source2-md5:	f1dbeb6a93c0ebf68239f495b23b22f0
 Patch0:		%{name}-default-session.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -34,6 +32,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires:	control-center >= 2.4.0
 Requires:	libgnomeui >= 2.4.0.1
+Requires:	gnome-splash
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +51,20 @@ ca³kowicie na wolnym oprogramowaniu.
 
 Pakiet gnome-session zawiera narzêdzia do obs³ugi sesji dla desktopu
 GNOME.
+
+%package -n gnome-splash-gnome
+Summary:	GNOME splash screen
+Summary(pl):	Ekran startowy GNOME
+Group:		X11/Amusements
+Requires:	%{name} >= 2.4.1-6
+Provides:	gnome-splash
+Obsoletes:	gnome-splash
+
+%description -n gnome-splash-gnome
+Default GNOME splash screen
+
+%description -n gnome-splash-gnome -l pl
+Standardowy ekran startowy GNOME
 
 %prep
 %setup -q
@@ -81,8 +94,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT/%{_datadir}/xsessions/gnome.desktop
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
-cp -f %{SOURCE2} $RPM_BUILD_ROOT/%{_pixmapsdir}/splash/gnome-splash.png
-
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
@@ -106,5 +117,9 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/default.session
 %{_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
-%{_pixmapsdir}/splash
+%dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
+
+%files -n gnome-splash-gnome
+%defattr(644,root,root,755)
+%{_pixmapsdir}/splash/gnome-splash.png
