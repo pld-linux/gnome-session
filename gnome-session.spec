@@ -1,5 +1,10 @@
-# TODO:
-# add all ChageLog and all READMEs to doc
+
+#
+# todo:
+# - add all ChageLog and all READMEs to doc
+# - when gnome-panel is not installed, then nautilus is not started
+#
+
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
