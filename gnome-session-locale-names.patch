@@ -1,12 +1,12 @@
-diff -urN aa/gnome-session-2.5.90/configure.in gnome-session-2.5.90/configure.in
---- aa/gnome-session-2.5.90/configure.in	2004-02-23 15:57:47.000000000 +0100
-+++ gnome-session-2.5.90/configure.in	2004-02-23 22:32:17.978837000 +0100
+diff -urN gnome-session-2.7.91.orig/configure.in gnome-session-2.7.91/configure.in
+--- gnome-session-2.7.91.orig/configure.in	2004-08-17 19:14:14.094736488 +0200
++++ gnome-session-2.7.91/configure.in	2004-08-17 19:14:25.818954136 +0200
 @@ -164,7 +164,7 @@
  AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE")
  AC_SUBST(GETTEXT_PACKAGE)
  
--ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja kn ko lt lv mi mk ml mn mr ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tr uk vi wa zh_CN zh_TW"
-+ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja kn ko lt lv mi mk ml mn mr ms nb ne nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tr uk vi wa zh_CN zh_TW"
+-ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja kn ko lt lv mi mk ml mn mr ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tk tr uk vi wa zh_CN zh_TW"
++ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja kn ko lt lv mi mk ml mn mr ms nb ne nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@Latn sv ta th tk tr uk vi wa zh_CN zh_TW"
  AM_GLIB_GNU_GETTEXT
  dnl -----------------------------------------------------------
  
