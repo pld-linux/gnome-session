@@ -6,7 +6,7 @@ diff -urN aa/gnome-session-2.7.4/gnome-session/session-properties.desktop.in gno
  Type=Application
  StartupNotify=true
 -Categories=Application;Settings;AdvancedSettings;
-+Categories=GTK;GNOME;Settings;AdvancedSettings;
++Categories=GTK;GNOME;Settings;AdvancedSettings;Capplet;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-session
  X-GNOME-Bugzilla-Component=gnome-session
