@@ -18,7 +18,7 @@ URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.5.90
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	esound-devel >= 0.2.30
+BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.4.0
 BuildRequires:	gnome-keyring >= 0.1.91
 BuildRequires:	gtk+2-devel >= 2:2.3.6
