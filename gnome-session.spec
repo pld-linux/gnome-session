@@ -6,25 +6,25 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.7.1
+Version:	2.7.3
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	b3766220ed48bc8718face16c4943540
+# Source0-md5:	5b38c962c10857fb05407575f6564d17
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-default-session.patch
 Patch1:		%{name}-logout.patch
 Patch2:		%{name}-openbox_wm.patch
 Patch3:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.1
+BuildRequires:	GConf2-devel >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.4.0
-BuildRequires:	gnome-keyring >= 0.2.0
-BuildRequires:	gtk+2-devel >= 2:2.4.0
+BuildRequires:	gnome-keyring >= 0.3.1
+BuildRequires:	gtk+2-devel >= 2:2.4.3
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.7.1
 BuildRequires:	libtool
@@ -37,7 +37,7 @@ BuildRequires:	xft-devel >= 2.1
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires:	control-center >= 1:2.6.0
-Requires:	gnome-keyring >= 0.2.0
+Requires:	gnome-keyring >= 0.3.1
 Requires:	gnome-splash
 Requires:	gnome-wm
 Requires:	libgnomeui >= 2.7.1
