@@ -65,12 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 	omf_dest_dir=%{_omf_dest_dir}/%{name} \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-for i in `find $RPM_BUILD_ROOT -name "*\.xml" | grep help`
-do
-        sed s@http://www.oasis-open.org/docbook/xml/4.1.2@/usr/share/sgml/docbook/xml-dtd-4.1.2@ $i > $i-
-        mv -f $i- $i
-done
-
 %find_lang %{name} --with-gnome --all-name
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
