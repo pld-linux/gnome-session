@@ -3,8 +3,8 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.1.2
-Release:	2
+Version:	2.1.3
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -83,8 +83,7 @@ rm -fr $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 /usr/bin/scrollkeeper-update
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" \
-/usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 
+%gconf_schema_install
 
 %postun
 /sbin/ldconfig
