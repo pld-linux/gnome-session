@@ -80,7 +80,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/%{_datadir}/xsessions/gnome.desktop
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
-mv -f %{SOURCE2} $RPM_BUILD_ROOT/%{_pixmapsdir}/splash/gnome-splash.png
+cp -f %{SOURCE2} $RPM_BUILD_ROOT/%{_pixmapsdir}/splash/gnome-splash.png
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
@@ -102,7 +102,8 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/gnome/capplets/*.desktop
-%{_datadir}/gnome/*
+%{_datadir}/gnome/default.session
+%{_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
 %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
