@@ -49,7 +49,7 @@ GNOME.
 %build
 intltoolize --copy --force
 glib-gettextize --copy --force
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
