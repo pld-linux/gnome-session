@@ -97,7 +97,7 @@ rm -fr $RPM_BUILD_ROOT
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*
-%{_datadir}/control-center-2.0
+%{_datadir}/gnome/capplets/*.desktop
 %{_datadir}/gnome/*
 %{_datadir}/xsessions/*.desktop
 %{_pixmapsdir}/splash
