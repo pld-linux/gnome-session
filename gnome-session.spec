@@ -16,6 +16,7 @@ BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	gtk+2-devel >= 2.1.0
+BuildRequires:	intltool
 BuildRequires:	libgnomecanvas-devel >= 2.1.0
 BuildRequires:	libgnomeui-devel >= 2.1.0
 BuildRequires:	libtool
