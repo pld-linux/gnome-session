@@ -90,7 +90,7 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/control-center-2.0
-%{_datadir}/gnome
+%{_datadir}/gnome/*
 %{_datadir}/pixmaps/splash
 %{_mandir}/man[15]/*
 %{_omf_dest_dir}/%{name}
