@@ -3,18 +3,18 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.0.5
+Version:	2.0.6
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/gnome/2.0.0/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/2.0.1/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	libgnomecanvas-devel >= 2.0.2
 BuildRequires:	libgnomeui-devel >= 2.0.3
 BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	GConf2-devel >= 1.2.1
-BuildRequires:	esound-devel >= 0.2.28
+BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	libwrap-devel
