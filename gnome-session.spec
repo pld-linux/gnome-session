@@ -11,16 +11,20 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 1.2.1
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	gnome-common >= 1.2.4
 BuildRequires:	gtk+2-devel >= 2.1.0
 BuildRequires:	libgnomecanvas-devel >= 2.1.0
 BuildRequires:	libgnomeui-devel >= 2.1.0
+BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	/usr/bin/scrollkeeper-update
+Requires(post):	GConf2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _prefix         /usr/X11R6
