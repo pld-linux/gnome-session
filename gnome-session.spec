@@ -3,7 +3,7 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.1.0
+Version:	2.1.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
