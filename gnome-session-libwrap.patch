@@ -1,0 +1,14 @@
+diff -Nru gnome-session-2.0.9.orig/configure.in gnome-session-2.0.9/configure.in
+--- gnome-session-2.0.9.orig/configure.in	Fri Nov 15 04:51:38 2002
++++ gnome-session-2.0.9/configure.in	Sun Dec 29 23:28:37 2002
+@@ -165,8 +165,8 @@
+         case "$I" in
+         -L*)
+         THEFILE="`echo $I | sed -e 's,^-L,,'`"
+-        echo "From $I, checking in dir $THEFILE for libwrap.a" 1>&5
+-        if test -f $THEFILE/libwrap.a; then
++        echo "From $I, checking in dir $THEFILE for libwrap.so" 1>&5
++        if test -f $THEFILE/libwrap.so; then
+                 LIBWRAP_PATH="$THEFILE"
+                 echo "Found in $LIBWRAP_PATH" 1>&5
+                 break
