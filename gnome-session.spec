@@ -40,6 +40,12 @@ GNOME.
 %setup -q
 
 %build
+intltoolize --copy --force
+libtoolize --copy --force
+gettextize --copy --force
+aclocal
+autoconf
+automake -a -c -f
 %configure \
 	--enable-gtk-doc=no
 %{__make}
