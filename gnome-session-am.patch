@@ -1,0 +1,10 @@
+diff -Nur gnome-session-1.5.19/smproxy/Makefile.am gnome-session-1.5.19.new/smproxy/Makefile.am
+--- gnome-session-1.5.19/smproxy/Makefile.am	Tue Mar 12 04:46:59 2002
++++ gnome-session-1.5.19.new/smproxy/Makefile.am	Wed May 15 00:21:37 2002
+@@ -12,6 +12,4 @@
+ 
+ gnome_smproxy_SOURCES = save.c smproxy.h smproxy.c
+ 
+-man1_MANS = smproxy.man
+-
+ EXTRA_DIST = README.gnome
