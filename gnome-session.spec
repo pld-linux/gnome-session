@@ -12,22 +12,22 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.t
 Source1:	gnome-session-gnome.desktop
 Patch0:		%{name}-default-session.patch
 URL:		http://www.gnome.org/
+BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	intltool
-BuildRequires:	libtool
-BuildRequires:	pkgconfig
-BuildRequires:	libwrap-devel
 BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gtk+2-devel >= 2.2.4
-BuildRequires:	Xft-devel >= 2.1
-BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	gnome-common >= 2.3.0
+BuildRequires:	gtk+2-devel >= 2.2.4
+BuildRequires:	libbonoboui-devel >= 2.4.0
 BuildRequires:	libgnomecanvas-devel >= 2.4.0
 BuildRequires:	libgnomeui-devel >= 2.4.0.1
-BuildRequires:	libbonoboui-devel >= 2.4.0
+BuildRequires:	libtool
+BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel >= 1.2.5
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	xft-devel >= 2.1
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires:	control-center >= 2.4.0
@@ -61,10 +61,10 @@ Provides:	gnome-splash
 Obsoletes:	gnome-splash
 
 %description -n gnome-splash-gnome
-Default GNOME splash screen
+Default GNOME splash screen.
 
 %description -n gnome-splash-gnome -l pl
-Standardowy ekran startowy GNOME
+Standardowy ekran startowy GNOME.
 
 %prep
 %setup -q
@@ -85,11 +85,12 @@ glib-gettextize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/%{_datadir}/xsessions
-install %{SOURCE1} $RPM_BUILD_ROOT/%{_datadir}/xsessions/gnome.desktop
+install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
+install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
