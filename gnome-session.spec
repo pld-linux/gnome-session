@@ -7,16 +7,15 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.9.4
-Release:	0.1
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.9/%{name}-%{version}.tar.bz2
 # Source0-md5:	85077a3dc14ce353bda22408f78e92c3
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-default-session.patch
-#Patch1:		%{name}-logout.patch
-Patch2:		%{name}-openbox_wm.patch
-Patch3:		%{name}-desktop.patch
+Patch1:		%{name}-openbox_wm.patch
+Patch2:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.9.2
 BuildRequires:	autoconf
@@ -77,9 +76,8 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
-##%patch1 -p1
+%patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 intltoolize --copy --force
@@ -90,9 +88,7 @@ glib-gettextize --copy --force
 %{__automake}
 %configure \
 	--disable-schemas-install \
-	X_EXTRA_LIBS="-lXext" \
-	--with-halt-command=/sbin/halt \
-	--with-reboot-command=/sbin/reboot
+	X_EXTRA_LIBS="-lXext"
 
 %{__make}
 
