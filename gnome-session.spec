@@ -3,16 +3,16 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	1.5.20
+Version:	2.0.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
-BuildRequires:	libgnomecanvas-devel >= 1.117.0
-BuildRequires:	libgnomeui-devel >= 1.116.1
-BuildRequires:	GConf2-devel
+BuildRequires:	libgnomecanvas-devel >= 2.0.1
+BuildRequires:	libgnomeui-devel >= 2.0.1
+BuildRequires:	GConf2-devel >= 1.2.0
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 BuildRequires:	libwrap-devel
@@ -48,15 +48,12 @@ GNOME.
 
 %build
 intltoolize --copy --force
+glib-gettextize --copy --force
 libtoolize --copy --force
-gettextize --copy --force
-sed 's,@PACKAGE@,@GETTEXT_PACKAGE@,' po/Makefile.in.in >po/Makefile.in.in.new
-mv po/Makefile.in.in.new po/Makefile.in.in
 aclocal
 %{__autoconf}
 %{__automake}
-%configure \
-	--enable-gtk-doc=no
+%configure 
 %{__make}
 
 %install
