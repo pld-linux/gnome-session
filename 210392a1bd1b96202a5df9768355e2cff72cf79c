@@ -1,0 +1,2 @@
+- added less_verbose patch (do not send debug information to stdout)
+- removed openbox wm patch - no longer needed
