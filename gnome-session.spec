@@ -1,46 +1,48 @@
-
 #
 # todo:
 # - add all ChageLog and all READMEs to doc
 # - when gnome-panel is not installed, then nautilus is not started
 #
-
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.4.2
-Release:	2
+Version:	2.6.0
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	fc2e6d9c71b4d1fe08ec329d7e03684e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	42018f3e5f201a4f449de444c600ce29
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-default-session.patch
 Patch1:		%{name}-logout.patch
 Patch2:		%{name}-openbox_wm.patch
+Patch3:		%{name}-locale-names.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.4.0
+BuildRequires:	GConf2-devel >= 2.5.90
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	esound-devel >= 1:0.2.30
+BuildRequires:	gnome-common >= 2.4.0
+BuildRequires:	gnome-keyring >= 0.2.0
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
-BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gnome-common >= 2.3.0
-BuildRequires:	gtk+2-devel >= 2.2.4
-BuildRequires:	libbonoboui-devel >= 2.4.0
-BuildRequires:	libgnomecanvas-devel >= 2.4.0
-BuildRequires:	libgnomeui-devel >= 2.4.0.1
+BuildRequires:	libbonoboui-devel >= 2.5.4
+BuildRequires:	libgnomecanvas-devel >= 2.6.0
+BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1.2.5
+BuildRequires:	pango-devel >= 1.4.0
+BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	xft-devel >= 2.1
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
-Requires:	control-center >= 2.4.0
-Requires:	libgnomeui >= 2.4.0.1
+Requires:	control-center >= 1:2.5.4
+Requires:	gnome-keyring >= 0.2.0
 Requires:	gnome-splash
 Requires:	gnome-wm
+Requires:	libgnomeui >= 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,7 +66,7 @@ GNOME.
 Summary:	GNOME splash screen
 Summary(pl):	Ekran startowy GNOME
 Group:		X11/Amusements
-Requires:	%{name} >= 2.4.1-6
+Requires:	%{name} >= 2.6.0
 Provides:	gnome-splash
 Obsoletes:	gnome-splash
 
@@ -79,6 +81,9 @@ Standardowy ekran startowy GNOME.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+
+mv po/{no,nb}.po
 
 %build
 intltoolize --copy --force
