@@ -1,6 +1,6 @@
 # TODO:
 # add all ChageLog and all READMEs to doc
-Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
+Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.3.7
@@ -38,7 +38,7 @@ applications and desktop tools to be used in conjunction with a window
 manager for the X Window System. GNOME2 is similar in purpose and scope
 to CDE and KDE, but GNOME2 is based completely on free software.
 
-GNOME2 session provides the session tools for the the gnome desktop.
+GNOME2 session provides the session tools for the the GNOME desktop.
 
 %description -l pl
 GNOME2 (GNU Network Object Model Environment) to zestaw przyjaznych
