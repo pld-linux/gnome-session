@@ -7,7 +7,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.6.2
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
@@ -17,6 +17,7 @@ Patch0:		%{name}-default-session.patch
 Patch1:		%{name}-logout.patch
 Patch2:		%{name}-openbox_wm.patch
 Patch3:		%{name}-locale-names.patch
+Patch4:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.6.2
 BuildRequires:	autoconf
@@ -82,6 +83,7 @@ Standardowy ekran startowy GNOME.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 mv po/{no,nb}.po
 
