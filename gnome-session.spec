@@ -4,27 +4,28 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.4.0
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	6a7acf3429b927c69e18019f9ec6fa9f
-#Patch0:		%{name}-locale-sr.patch
+Patch0:		%{name}-default-session.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.4.0
-BuildRequires:	Xft-devel >= 2.1
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gnome-common >= 2.3.0
-BuildRequires:	gtk+2-devel >= 2.2.4
 BuildRequires:	intltool
+BuildRequires:	libtool
+BuildRequires:	pkgconfig
+BuildRequires:	libwrap-devel
+BuildRequires:	esound-devel >= 0.2.30
+BuildRequires:	gtk+2-devel >= 2.2.4
+BuildRequires:	Xft-devel >= 2.1
+BuildRequires:	GConf2-devel >= 2.4.0
+BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	libgnomecanvas-devel >= 2.4.0
 BuildRequires:	libgnomeui-devel >= 2.4.0.1
-BuildRequires:	libtool
-BuildRequires:	libwrap-devel
+BuildRequires:	libbonoboui-devel >= 2.4.0
 BuildRequires:	pango-devel >= 1.2.5
-BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
@@ -51,11 +52,7 @@ GNOME.
 
 %prep
 %setup -q
-#%patch0 -p1
-
-# sr_YU is latin2, sr_YU@cyrillic is cyrillic in glibc
-#mv -f po/{sr.po,sr@cyrillic.po}
-#mv -f po/{sr@Latn.po,sr.po}
+%patch0 -p1
 
 %build
 intltoolize --copy --force
