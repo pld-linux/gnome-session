@@ -76,7 +76,7 @@ install -d $RPM_BUILD_ROOT/%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT/%{_datadir}/xsessions/gnome.desktop
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/*.desktop
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
