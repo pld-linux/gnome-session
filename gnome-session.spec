@@ -3,12 +3,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.5.91
+Version:	2.5.92
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	602c92c12d15591ef374ba9c1f37222a
+# Source0-md5:	1d1b4b0ea44bda439ace636f4b63908b
 Source1:	%{name}-gnome.desktop
 Source2:	http://krzak.linux.net.pl/pld-gnome-splash.png
 # Source2-md5:	f1dbeb6a93c0ebf68239f495b23b22f0
@@ -20,10 +20,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 0.2.30
 BuildRequires:	gnome-common >= 2.4.0
-BuildRequires:	gnome-keyring
-BuildRequires:	gtk+2-devel >= 2:2.3.5
+BuildRequires:	gnome-keyring >= 0.1.91
+BuildRequires:	gtk+2-devel >= 2:2.3.6
 BuildRequires:	intltool
-BuildRequires:	libbonoboui-devel >= 2.5.0
+BuildRequires:	libbonoboui-devel >= 2.5.4
 BuildRequires:	libgnomecanvas-devel >= 2.5.90
 BuildRequires:	libgnomeui-devel >= 2.5.90
 BuildRequires:	libtool
@@ -35,6 +35,7 @@ BuildRequires:	rpm-build >= 4.1-10
 Requires(post,postun):	/sbin/ldconfig
 Requires(post):	GConf2
 Requires:	control-center >= 2.5.90
+Requires:	gnome-keyring >= 0.1.91
 Requires:	libgnomeui >= 2.5.90
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
