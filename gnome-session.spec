@@ -1,6 +1,6 @@
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment.
 Name:		gnome-session
-Version:	1.5.17
+Version:	1.5.18
 Release:	0.1
 License:	LGPL
 Group:		X11/Applications
@@ -46,8 +46,13 @@ gzip -9nf AUTHORS ChangeLog NEWS README
 %clean
 rm -fr $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+/usr/bin/scrollkeeper-update
+
+%postun
+/sbin/ldconfig
+/usr/bin/scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
