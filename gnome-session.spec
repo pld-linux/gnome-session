@@ -4,11 +4,12 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.4.0
-Release:	3
+Release:	4
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	6a7acf3429b927c69e18019f9ec6fa9f
+Source1:	gnome-session-gnome.desktop
 Patch0:		%{name}-default-session.patch
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
@@ -71,6 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT/%{_datadir}/xsessions
+install %{SOURCE1} $RPM_BUILD_ROOT/%{_datadir}/xsessions/gnome.desktop
+
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
@@ -92,5 +96,6 @@ rm -fr $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/control-center-2.0
 %{_datadir}/gnome/*
+%{_datadir}/xsessions/*.desktop
 %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
