@@ -3,12 +3,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.4.1
-Release:	4
+Version:	2.5.1
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	da92740dd8a7f316b2bc4a295fd94136
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	6aa2254dd95b3cafcb109888c7d75428
 Source1:	gnome-session-gnome.desktop
 Source2:	http://krzak.linux.net.pl/pld-gnome-splash.png
 # Source2-md5:	f1dbeb6a93c0ebf68239f495b23b22f0
@@ -22,12 +22,12 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	libwrap-devel
 BuildRequires:	esound-devel >= 0.2.30
-BuildRequires:	gtk+2-devel >= 2.2.4
+BuildRequires:	gtk+2-devel >= 2.3.0
 BuildRequires:	Xft-devel >= 2.1
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	gnome-common >= 2.3.0
 BuildRequires:	libgnomecanvas-devel >= 2.4.0
-BuildRequires:	libgnomeui-devel >= 2.4.0.1
+BuildRequires:	libgnomeui-devel >= 2.5.0
 BuildRequires:	libbonoboui-devel >= 2.4.0
 BuildRequires:	pango-devel >= 1.2.5
 BuildRequires:	rpm-build >= 4.1-10
