@@ -1,16 +1,21 @@
+# TODO:
+# add all ChageLog and all READMEs to doc
 Summary:	The gnome desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	1.5.19
+Version:	1.5.20
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
-BuildRequires:	libgnomecanvas-devel
-BuildRequires:	libgnomeui-devel
+BuildRequires:	libgnomecanvas-devel >= 1.117.0
+BuildRequires:	libgnomeui-devel >= 1.116.1
+BuildRequires:	GConf2-devel
+BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
+BuildRequires:	libwrap-devel
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	/usr/bin/scrollkeeper-update
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +50,8 @@ GNOME.
 intltoolize --copy --force
 libtoolize --copy --force
 gettextize --copy --force
+sed 's,@PACKAGE@,@GETTEXT_PACKAGE@,' po/Makefile.in.in >po/Makefile.in.in.new
+mv po/Makefile.in.in.new po/Makefile.in.in
 aclocal
 %{__autoconf}
 %{__automake}
@@ -56,11 +63,12 @@ aclocal
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/%{name} \
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-gzip -9nf AUTHORS ChangeLog NEWS README
 
 %find_lang %{name} --with-gnome --all-name
+find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %clean
 rm -fr $RPM_BUILD_ROOT
@@ -68,8 +76,8 @@ rm -fr $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 /usr/bin/scrollkeeper-update
-GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`; export GCONF_CONFIG_SOURCE
-/usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 2>&1
+GCONF_CONFIG_SOURCE="" \
+/usr/X11R6/bin/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 
 
 %postun
 /sbin/ldconfig
@@ -77,7 +85,7 @@ GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`; export GCONF_CONFIG_SOUR
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/control-center-2.0
