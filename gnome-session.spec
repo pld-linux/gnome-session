@@ -32,7 +32,7 @@ BuildRequires:	libgnomecanvas-devel >= 2.6.1.1
 BuildRequires:	libgnomeui-devel >= 2.6.1.1
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1.4.0
+BuildRequires:	pango-devel >= 1:1.4.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
