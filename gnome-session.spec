@@ -32,7 +32,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	xft-devel >= 2.1
 Requires(post,postun):	/sbin/ldconfig
-Requires(post):	GConf2
+Requires(post,preun):	GConf2
 Requires:	control-center >= 1:2.10.0
 Requires:	gnome-keyring >= 0.4.2
 Requires:	gnome-splash
