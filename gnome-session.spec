@@ -109,14 +109,13 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -fr $RPM_BUILD_ROOT
 
 %post
-%ldconfig_post
+/sbin/ldconfig
 %gconf_schema_install gnome-session.schemas
 
 %preun
 %gconf_schema_uninstall gnome-session.schemas
 
-%postun
-%ldconfig_postun
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
