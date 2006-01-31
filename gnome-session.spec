@@ -91,6 +91,7 @@ Standardowy ekran startowy GNOME.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/autostart
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -122,6 +123,7 @@ rm -fr $RPM_BUILD_ROOT
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
+%dir %{_datadir}/autostart
 %{_datadir}/gnome/default.session
 %{_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
