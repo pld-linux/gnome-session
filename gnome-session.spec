@@ -5,12 +5,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.13.90
+Version:	2.13.91
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	f908dc6da3094a4b9fccd6f294828fb7
+# Source0-md5:	3c580ad3870a70348b8c20d060833ce8
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-less_verbose.patch
@@ -30,8 +30,6 @@ BuildRequires:	pango-devel >= 1:1.10.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-BuildRequires:	xft-devel >= 2.1
-Requires(post):	/sbin/ldconfig
 Requires(post,preun):	GConf2
 Requires:	control-center >= 1:2.12.0
 Requires:	gnome-keyring >= 0.4.2
