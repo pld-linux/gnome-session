@@ -10,7 +10,7 @@ Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	3c580ad3870a70348b8c20d060833ce8
+# Source0-md5:	71b9c1e96f28b4fc8674e06fc57bbdd4
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-less_verbose.patch
