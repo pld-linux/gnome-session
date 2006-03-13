@@ -5,39 +5,37 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.10.0
+Version:	2.14.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	cbeb2db49dac11bf8088e6b025265fff
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.14/%{name}-%{version}.tar.bz2
+# Source0-md5:	def891553bda47cd660be80cf09fe0ee
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-less_verbose.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.10.0
+BuildRequires:	GConf2-devel >= 2.12.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-keyring >= 0.4.2
-BuildRequires:	gtk+2-devel >= 2:2.6.4
+BuildRequires:	gtk+2-devel >= 2:2.8.3
 BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.10.0-2
+BuildRequires:	libgnomeui-devel >= 2.12.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.8.1
+BuildRequires:	pango-devel >= 1:1.10.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	xft-devel >= 2.1
-Requires(post,postun):	/sbin/ldconfig
-Requires(post):	GConf2
-Requires:	control-center >= 1:2.10.0
+BuildRequires:	rpmbuild(macros) >= 1.197
+Requires(post,preun):	GConf2
+Requires:	control-center >= 1:2.12.0
 Requires:	gnome-keyring >= 0.4.2
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.10.0-2
+Requires:	libgnomeui >= 2.12.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,7 +59,7 @@ GNOME.
 Summary:	GNOME splash screen
 Summary(pl):	Ekran startowy GNOME
 Group:		X11/Amusements
-Requires:	%{name} >= 2.6.0
+Requires:	%{name} = %{version}
 Provides:	gnome-splash
 Obsoletes:	gnome-splash
 
@@ -77,8 +75,8 @@ Standardowy ekran startowy GNOME.
 %patch1 -p1
 
 %build
-intltoolize --copy --force
-glib-gettextize --copy --force
+%{__intltoolize}
+%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -91,6 +89,7 @@ glib-gettextize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -110,7 +109,10 @@ rm -fr $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%gconf_schema_install
+%gconf_schema_install gnome-session.schemas
+
+%preun
+%gconf_schema_uninstall gnome-session.schemas
 
 %postun -p /sbin/ldconfig
 
@@ -118,7 +120,8 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/gconf/schemas/gnome-session.schemas
+%dir %{_datadir}/gnome/autostart
 %{_datadir}/gnome/default.session
 %{_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
