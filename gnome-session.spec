@@ -20,7 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-keyring >= 0.4.2
+BuildRequires:	gnome-keyring-devel >= 0.4.2
 BuildRequires:	gtk+2-devel >= 2:2.8.3
 BuildRequires:	intltool
 BuildRequires:	libgnomeui-devel >= 2.12.0
