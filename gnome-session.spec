@@ -5,12 +5,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.14.1
-Release:	2
+Version:	2.14.2
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	0b7a0fa918f7d0565d6487d06fa4489d
+# Source0-md5:	191dc3a18eb37aca391914b404cf1cd7
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-less_verbose.patch
@@ -22,9 +22,9 @@ BuildRequires:	esound >= 1:0.2.30
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-keyring-devel >= 0.4.2
-BuildRequires:	gtk+2-devel >= 2:2.8.3
+BuildRequires:	gtk+2-devel >= 2:2.8.18
 BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.14.0
+BuildRequires:	libgnomeui-devel >= 2.14.1
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel >= 1:1.10.0
@@ -32,11 +32,11 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,preun):	GConf2
-Requires:	control-center >= 1:2.14.0
-Requires:	gnome-keyring >= 0.4.2
+Requires:	control-center >= 1:2.14.2
+Requires:	gnome-keyring >= 0.4.9
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.14.0
+Requires:	libgnomeui >= 2.14.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
