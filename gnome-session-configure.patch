@@ -1,0 +1,32 @@
+diff -aurN gnome-session-2.15.1.orig/configure.in gnome-session-2.15.1/configure.in
+--- gnome-session-2.15.1.orig/configure.in	2006-04-25 00:01:32.000000000 +0200
++++ gnome-session-2.15.1/configure.in	2006-06-09 17:48:45.032674960 +0200
+@@ -100,28 +100,6 @@
+ 
+ AC_SUBST(GCONF_SANITY_CHECK)
+ PATH=$old_path
+-	
+-AC_PATH_PROG(GNOME_KEYRING_DAEMON, gnome-keyring-daemon, no)
+-if test x"$GNOME_KEYRING_DAEMON" = xno; then
+-  AC_MSG_ERROR([gnome-keyring-daemon executable not found in your path - should be installed with gnome-keyring])
+-fi
+-	
+-AC_SUBST(GNOME_KEYRING_DAEMON)
+-
+-# esd
+-ESDSERVERDIR=`$PKG_CONFIG --variable=esd_serverdir esound`
+-old_path=$PATH
+-if test x"$ESDSERVERDIR" != x; then
+-   PATH=$ESDSERVERDIR:$PATH
+-fi
+-
+-AC_PATH_PROG(ESD_SERVER, esd, no)
+-if test x"$ESD_SERVER" = xno; then
+-  AC_MSG_ERROR([esd executable not found in your path - should be installed with ESound])
+-fi
+-
+-AC_SUBST(ESD_SERVER)
+-PATH=$old_path
+ 
+ dnl X development libraries check
+ 
