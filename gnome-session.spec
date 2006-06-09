@@ -5,37 +5,37 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.14.2
+Version:	2.15.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	191dc3a18eb37aca391914b404cf1cd7
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.15/%{name}-%{version}.tar.bz2
+# Source0-md5:	62030f6fcec1bf9d3d46545c18720428
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-less_verbose.patch
+Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.12.0
+BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-keyring-devel >= 0.4.9
-BuildRequires:	gtk+2-devel >= 2:2.8.18
-BuildRequires:	intltool
-BuildRequires:	libgnomeui-devel >= 2.14.1
+BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	intltool >= 0.35
+BuildRequires:	libgnomeui-devel >= 2.15.1
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.10.0
+BuildRequires:	pango-devel >= 1:1.13.1
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
-Requires(post,preun):	GConf2
+Requires(post,preun):	GConf2 >= 2.14.0
 Requires:	control-center >= 1:2.14.2
 Requires:	gnome-keyring >= 0.4.9
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.14.1
+Requires:	libgnomeui >= 2.15.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -85,7 +85,9 @@ Standardowy ekran startowy GNOME.
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
-%{__make}
+%{__make} \
+	ESD_SERVER='%{_bindir}/esound' \
+	GNOME_KEYRING_DAEMON='%{_bindir}/gnome-keyring-daemon' \
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -97,10 +99,11 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 
+# kill it, breaks short-circuit
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{no,tk}
 
 %find_lang %{name} --with-gnome --all-name
 
