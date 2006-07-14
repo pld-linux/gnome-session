@@ -5,12 +5,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.15.1
-Release:	2
+Version:	2.15.4
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.15/%{name}-%{version}.tar.bz2
-# Source0-md5:	62030f6fcec1bf9d3d46545c18720428
+# Source0-md5:	3d01584d05221f708a4e05b67aefaac2
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -22,21 +22,21 @@ BuildRequires:	automake
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-keyring-devel >= 0.5.1
-BuildRequires:	gtk+2-devel >= 2:2.9.3
+BuildRequires:	gtk+2-devel >= 2:2.10.0
 BuildRequires:	intltool >= 0.35
-BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	libgnomeui-devel >= 2.15.2
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.13.2
+BuildRequires:	pango-devel >= 1:1.13.3
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,preun):	GConf2 >= 2.14.0
-Requires:	control-center >= 1:2.15.3
+Requires:	control-center >= 1:2.15.4
 Requires:	gnome-keyring >= 0.5.1
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.15.1
+Requires:	libgnomeui >= 2.15.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -83,6 +83,7 @@ Standardowy ekran startowy GNOME.
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
@@ -105,7 +106,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/{no,tk}
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/tk
 
 %find_lang %{name} --with-gnome --all-name
 
