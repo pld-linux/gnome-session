@@ -5,12 +5,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.14.2
+Version:	2.14.3
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	191dc3a18eb37aca391914b404cf1cd7
+# Source0-md5:	34eb4641e2791ae51acf6f1edfcf3d64
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-less_verbose.patch
