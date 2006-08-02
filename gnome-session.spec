@@ -6,7 +6,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.15.90
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.15/%{name}-%{version}.tar.bz2
@@ -19,6 +19,7 @@ URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	control-center-devel >= 2.15.90
 BuildRequires:	esound-devel >= 1:0.2.30
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-keyring-devel >= 0.5.1
