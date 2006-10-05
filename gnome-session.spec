@@ -106,8 +106,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/tk
-
 %find_lang %{name} --with-gnome --all-name
 
 %clean
