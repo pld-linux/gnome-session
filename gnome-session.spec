@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.16.2
+Version:	2.16.3
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	ed09f3b2d87f25e9de4a60b15c8df6c9
+# Source0-md5:	d35a7f541adecc112b7c73f95353a183
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -15,21 +15,21 @@ URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.16.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.16.2
+BuildRequires:	control-center-devel >= 1:2.16.3
 BuildRequires:	esound-devel >= 1:0.2.36
 BuildRequires:	gnome-common >= 2.12.0
 BuildRequires:	gnome-keyring-devel >= 0.6.0
-BuildRequires:	gtk+2-devel >= 2:2.10.6
+BuildRequires:	gtk+2-devel >= 2:2.10.9
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libgnomeui-devel >= 2.16.1
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.14.8
+BuildRequires:	pango-devel >= 1:1.14.10
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
 Requires(post,preun):	GConf2 >= 2.16.0
-Requires:	control-center >= 1:2.16.2
+Requires:	control-center >= 1:2.16.3
 Requires:	gnome-keyring >= 0.6.0
 Requires:	gnome-splash
 Requires:	gnome-wm
