@@ -1,5 +1,5 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
-Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
+Summary(pl.UTF-8):   Programy dla desktopu Å›rodowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.16.3
 Release:	1
@@ -44,18 +44,18 @@ to CDE and KDE, but GNOME2 is based completely on free software.
 
 GNOME2 session provides the session tools for the the GNOME desktop.
 
-%description -l pl
+%description -l pl.UTF-8
 GNOME2 (GNU Network Object Model Environment) to zestaw przyjaznych
-dla u¿ytkownika aplikacji i narzêdzi do u¿ywania w po³±czeniu z
-zarz±dc± okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
-ca³kowicie na wolnym oprogramowaniu.
+dla uÅ¼ytkownika aplikacji i narzÄ™dzi do uÅ¼ywania w poÅ‚Ä…czeniu z
+zarzÄ…dcÄ… okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
+caÅ‚kowicie na wolnym oprogramowaniu.
 
-Pakiet gnome-session zawiera narzêdzia do obs³ugi sesji dla desktopu
+Pakiet gnome-session zawiera narzÄ™dzia do obsÅ‚ugi sesji dla desktopu
 GNOME.
 
 %package -n gnome-splash-gnome
 Summary:	GNOME splash screen
-Summary(pl):	Ekran startowy GNOME
+Summary(pl.UTF-8):   Ekran startowy GNOME
 Group:		X11/Amusements
 Requires:	%{name} = %{version}-%{release}
 Provides:	gnome-splash
@@ -64,7 +64,7 @@ Obsoletes:	gnome-splash
 %description -n gnome-splash-gnome
 Default GNOME splash screen.
 
-%description -n gnome-splash-gnome -l pl
+%description -n gnome-splash-gnome -l pl.UTF-8
 Standardowy ekran startowy GNOME.
 
 %prep
