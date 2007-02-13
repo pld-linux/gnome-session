@@ -1,5 +1,5 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
-Summary(pl.UTF-8):   Programy dla desktopu środowiska graficznego GNOME2
+Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.16.3
 Release:	1
@@ -55,7 +55,7 @@ GNOME.
 
 %package -n gnome-splash-gnome
 Summary:	GNOME splash screen
-Summary(pl.UTF-8):   Ekran startowy GNOME
+Summary(pl.UTF-8):	Ekran startowy GNOME
 Group:		X11/Amusements
 Requires:	%{name} = %{version}-%{release}
 Provides:	gnome-splash
