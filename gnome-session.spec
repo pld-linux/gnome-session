@@ -1,43 +1,44 @@
-#
-# todo:
-# - add all ChageLog and all READMEs to doc
-#
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
-Summary(pl):	Programy dla desktopu ¶rodowiska graficznego GNOME2
+Summary(pl.UTF-8):	Programy dla desktopu Å›rodowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.16.1
+Version:	2.17.92
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	ef6f87cb3cc6012b212fa14353a63932
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.17/%{name}-%{version}.tar.bz2
+# Source0-md5:	11eb24d01c4aad2aaf81cf7722a9933c
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	GConf2-devel >= 2.18.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.16.1
-BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	control-center-devel >= 1:2.17.92
+BuildRequires:	dbus-glib-devel >= 0.73
+BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-keyring-devel >= 0.6.0
-BuildRequires:	gtk+2-devel >= 2:2.10.5
-BuildRequires:	intltool >= 0.35
-BuildRequires:	libgnomeui-devel >= 2.16.0
+BuildRequires:	gnome-desktop-devel >= 2.17.92
+BuildRequires:	gnome-keyring-devel >= 0.7.92
+BuildRequires:	gtk+2-devel >= 2:2.10.9
+BuildRequires:	intltool >= 0.35.5
+BuildRequires:	libgnomeui-devel >= 2.17.92
 BuildRequires:	libtool
+BuildRequires:	libnotify-devel >= 0.2.1
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.14.5
+BuildRequires:	pango-devel >= 1:1.16.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.197
-Requires(post,preun):	GConf2 >= 2.14.0
-Requires:	control-center >= 1:2.16.1
-Requires:	gnome-keyring >= 0.6.0
+BuildRequires:	rpmbuild(macros) >= 1.311
+Requires(post,postun):	gtk+2
+Requires(post,postun):	hicolor-icon-theme
+Requires(post,preun):	GConf2
+Requires:	control-center >= 1:2.17.92
+Requires:	gnome-keyring >= 0.7.92
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.16.0
+Requires:	libgnomeui >= 2.17.92
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,18 +49,18 @@ to CDE and KDE, but GNOME2 is based completely on free software.
 
 GNOME2 session provides the session tools for the the GNOME desktop.
 
-%description -l pl
+%description -l pl.UTF-8
 GNOME2 (GNU Network Object Model Environment) to zestaw przyjaznych
-dla u¿ytkownika aplikacji i narzêdzi do u¿ywania w po³±czeniu z
-zarz±dc± okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
-ca³kowicie na wolnym oprogramowaniu.
+dla uÅ¼ytkownika aplikacji i narzÄ™dzi do uÅ¼ywania w poÅ‚Ä…czeniu z
+zarzÄ…dcÄ… okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
+caÅ‚kowicie na wolnym oprogramowaniu.
 
-Pakiet gnome-session zawiera narzêdzia do obs³ugi sesji dla desktopu
+Pakiet gnome-session zawiera narzÄ™dzia do obsÅ‚ugi sesji dla desktopu
 GNOME.
 
 %package -n gnome-splash-gnome
 Summary:	GNOME splash screen
-Summary(pl):	Ekran startowy GNOME
+Summary(pl.UTF-8):	Ekran startowy GNOME
 Group:		X11/Amusements
 Requires:	%{name} = %{version}-%{release}
 Provides:	gnome-splash
@@ -68,7 +69,7 @@ Obsoletes:	gnome-splash
 %description -n gnome-splash-gnome
 Default GNOME splash screen.
 
-%description -n gnome-splash-gnome -l pl
+%description -n gnome-splash-gnome -l pl.UTF-8
 Standardowy ekran startowy GNOME.
 
 %prep
@@ -114,11 +115,14 @@ rm -fr $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 %gconf_schema_install gnome-session.schemas
+%update_icon_cache hicolor
 
 %preun
 %gconf_schema_uninstall gnome-session.schemas
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+%update_icon_cache hicolor
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -127,8 +131,8 @@ rm -fr $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
 %{_datadir}/gnome/default.session
-%{_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
+%{_iconsdir}/hicolor/*/*/session-properties.*
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
 %{_desktopdir}/*.desktop
