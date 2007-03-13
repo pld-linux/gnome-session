@@ -2,11 +2,11 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.18.0
-Release:	0.1
+Release:	0.5
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	d35a7f541adecc112b7c73f95353a183
+# Source0-md5:	830dbabe74474da49018889d27eefaae
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -22,6 +22,7 @@ BuildRequires:	gnome-keyring-devel >= 0.6.0
 BuildRequires:	gtk+2-devel >= 2:2.10.9
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libgnomeui-devel >= 2.16.1
+BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	pango-devel >= 1:1.14.10
@@ -69,7 +70,7 @@ Standardowy ekran startowy GNOME.
 
 %prep
 %setup -q
-%patch0 -p1
+## patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
@@ -123,7 +124,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
 %{_datadir}/gnome/default.session
-%{_datadir}/gnome/default.wm
+## {_datadir}/gnome/default.wm
 %{_datadir}/xsessions/*.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
