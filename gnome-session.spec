@@ -1,43 +1,43 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.19.90
+Version:	2.19.92
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.19/%{name}-%{version}.tar.bz2
-# Source0-md5:	3bc117a08247a491cb29564bb753de08
+# Source0-md5:	52e05bcb16fbd904e01a5aebb2ce75d1
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.18.0.1
+BuildRequires:	GConf2-devel >= 2.19.1
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gnome-control-center-devel >= 1:2.19.0
+BuildRequires:	gnome-control-center-devel >= 1:2.19.92
 BuildRequires:	esound-devel >= 1:0.2.36
 BuildRequires:	gnome-common >= 2.18.0
-BuildRequires:	gnome-keyring-devel >= 0.8
+BuildRequires:	gnome-keyring-devel >= 2.19.91
 BuildRequires:	gtk+2-devel >= 2:2.10.14
-BuildRequires:	intltool >= 0.35.5
-BuildRequires:	libgnomeui-devel >= 2.18.1
+BuildRequires:	intltool >= 0.36.1
+BuildRequires:	libgnomeui-devel >= 2.19.1
 BuildRequires:	libnotify-devel
 BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.16.1
+BuildRequires:	pango-devel >= 1:1.18.1
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	gnome-control-center >= 1:2.19.0
-Requires:	gnome-keyring >= 0.8
+Requires:	gnome-control-center >= 1:2.19.92
+Requires:	gnome-keyring >= 2.19.91
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.18.1
+Requires:	libgnomeui >= 2.19.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
