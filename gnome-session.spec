@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.20.3
+Version:	2.21.5
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	f9d80e12c8fd79efa9786f617ba18bc7
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.21/%{name}-%{version}.tar.bz2
+# Source0-md5:	8f044122c0ecd071fa3d56bc83ef52fe
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -17,6 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-control-center-devel >= 1:2.20.0
 BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	glib2-devel >= 2.13.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.12.0
