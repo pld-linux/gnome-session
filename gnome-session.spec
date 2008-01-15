@@ -17,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gnome-control-center-devel >= 1:2.20.0
 BuildRequires:	esound-devel >= 1:0.2.36
-BuildRequires:	glib2-devel >= 2.13.0
+BuildRequires:	glib2-devel >= 1:2.13.0
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.12.0
