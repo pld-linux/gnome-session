@@ -2,13 +2,14 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.22.0
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
 # Source0-md5:	5f9531565c5ec08104c3518c72c79f42
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-configure.patch
 Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
@@ -79,6 +80,7 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 %patch2 -p1
 
 sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
