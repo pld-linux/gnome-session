@@ -1,32 +1,33 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.20.3
+Version:	2.22.0
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	f9d80e12c8fd79efa9786f617ba18bc7
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	5f9531565c5ec08104c3518c72c79f42
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-configure.patch
 Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.20.0
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gnome-control-center-devel >= 1:2.20.0
+BuildRequires:	automake >= 1:1.9
+BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	gettext-devel
+BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
 BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	glib2-devel >= 1:2.15.4
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-keyring-devel >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	gnome-keyring-devel >= 2.22.0
+BuildRequires:	gtk+2-devel >= 2:2.12.5
 BuildRequires:	intltool >= 0.36.1
-BuildRequires:	libgnomeui-devel >= 2.20.0
-BuildRequires:	libnotify-devel
+BuildRequires:	libgnomeui-devel >= 2.22.0
+BuildRequires:	libnotify-devel >= 0.2.1
 BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel >= 1:1.18.2
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -34,11 +35,11 @@ BuildRequires:	sed >= 4.0
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	gnome-control-center >= 1:2.20.0
-Requires:	gnome-keyring >= 2.20.0
+Requires:	gnome-control-center >= 1:2.22.0
+Requires:	gnome-keyring >= 2.22.0
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.20.0
+Requires:	libgnomeui >= 2.22.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -78,11 +79,10 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 
-sed -i -e 's#sr\@Latn#sr\@latin#' po/LINGUAS
-mv po/sr\@{Latn,latin}.po
+sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
+mv po/sr@{Latn,latin}.po
 
 %build
 %{__glib_gettextize}
@@ -90,8 +90,10 @@ mv po/sr\@{Latn,latin}.po
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
+	--with-at-spi-registryd-directory=%{_libdir}/at-spi \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
@@ -133,14 +135,18 @@ rm -fr $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS *ChangeLog NEWS README
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/gnome-session
+%attr(755,root,root) %{_bindir}/gnome-session-properties
+%attr(755,root,root) %{_bindir}/gnome-session-remove
+%attr(755,root,root) %{_bindir}/gnome-session-save
+%attr(755,root,root) %{_bindir}/gnome-wm
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
 %{_datadir}/gnome/default.session
-%{_datadir}/xsessions/*.desktop
+%{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
-%{_desktopdir}/*.desktop
+%{_desktopdir}/session-properties.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
 
 %files -n gnome-splash-gnome
