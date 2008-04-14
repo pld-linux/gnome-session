@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.22.1
+Version:	2.22.1.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	8cd499f49cecfdcb32fd4f97965e9017
+# Source0-md5:	6e1e975efb0c717b09821ed4231eb584
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -19,12 +19,12 @@ BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
 BuildRequires:	esound-devel >= 1:0.2.36
-BuildRequires:	glib2-devel >= 1:2.15.4
+BuildRequires:	glib2-devel >= 1:2.16.3
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.22.0
-BuildRequires:	gtk+2-devel >= 2:2.12.5
+BuildRequires:	gtk+2-devel >= 2:2.12.9
 BuildRequires:	intltool >= 0.36.1
-BuildRequires:	libgnomeui-devel >= 2.22.0
+BuildRequires:	libgnomeui-devel >= 2.22.1
 BuildRequires:	libnotify-devel >= 0.2.1
 BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
@@ -40,7 +40,7 @@ Requires:	gnome-control-center >= 1:2.22.0
 Requires:	gnome-keyring >= 2.22.0
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.22.0
+Requires:	libgnomeui >= 2.22.1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
