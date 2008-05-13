@@ -107,6 +107,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -151,6 +152,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-login-sound.desktop
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
+%dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %{_datadir}/gnome/shutdown/gnome-logout-sound.sh
 %dir %{_datadir}/gnome-session
