@@ -1,16 +1,15 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.22.1.1
+Version:	2.23.2.1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	6e1e975efb0c717b09821ed4231eb584
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
+# Source0-md5:	09419a0d58261d755ff3811c959efce4
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
-Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf
@@ -81,10 +80,12 @@ Standardowy ekran startowy GNOME.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
 mv po/sr@{Latn,latin}.po
+
+mv ChangeLog main-ChangeLog
+find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %build
 %{__glib_gettextize}
@@ -113,10 +114,6 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 
-# kill it, breaks short-circuit
-mv ChangeLog main-ChangeLog
-find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
-
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -139,12 +136,25 @@ rm -fr $RPM_BUILD_ROOT
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-properties
-%attr(755,root,root) %{_bindir}/gnome-session-remove
-%attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
+%dir %{_libexecdir}/gnome-session
+%dir %{_libexecdir}/gnome-session/helpers
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-keyring-daemon-wrapper
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-login-sound
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
-%{_datadir}/gnome/default.session
+%{_datadir}/gnome/autostart/at-spi-registryd-wrapper.desktop
+%{_datadir}/gnome/autostart/gnome-keyring-daemon-wrapper.desktop
+%{_datadir}/gnome/autostart/gnome-login-sound.desktop
+%{_datadir}/gnome/autostart/gnome-session-splash.desktop
+%{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
+%dir %{_datadir}/gnome/shutdown
+%{_datadir}/gnome/shutdown/gnome-logout-sound.sh
+%dir %{_datadir}/gnome-session
+%{_datadir}/gnome-session/session-properties.glade
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
