@@ -15,12 +15,12 @@ BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	gettext-devel
-BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
 BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.16.3
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.22.0
+BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.12.9
 BuildRequires:	intltool >= 0.36.1
 BuildRequires:	libgnomeui-devel >= 2.22.1
@@ -32,6 +32,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
@@ -155,7 +156,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
-%{_datadir}/gnome/shutdown/gnome-logout-sound.sh
+%attr(755,root,root) %{_datadir}/gnome/shutdown/gnome-logout-sound.sh
 %dir %{_datadir}/gnome-session
 %{_datadir}/gnome-session/session-properties.glade
 %{_datadir}/xsessions/gnome.desktop
