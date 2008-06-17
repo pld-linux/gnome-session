@@ -1,37 +1,35 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.23.3
+Version:	2.23.4
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	ae830826f27fb8537abb74c1ccbe2245
+# Source0-md5:	5f24203ed4fa8738ae1bf5085dc8d3a4
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
+BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	esound-devel >= 1:0.2.36
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.16.3
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.22.0
-BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.12.9
-BuildRequires:	intltool >= 0.36.1
+BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgnomeui-devel >= 2.22.1
-BuildRequires:	libnotify-devel >= 0.2.1
-BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
+BuildRequires:	startup-notification-devel
 BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
