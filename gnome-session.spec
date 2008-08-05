@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.23.5
+Version:	2.23.6
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	3ab6aa4395a152cee32e8f5bbbfa211d
+# Source0-md5:	5d90cfa748e4dcdbd286398b23c20e7b
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -152,10 +152,12 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-login-sound.desktop
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
+%{_datadir}/gnome/autostart/gnome-wm.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %attr(755,root,root) %{_datadir}/gnome/shutdown/gnome-logout-sound.sh
 %dir %{_datadir}/gnome-session
+%{_datadir}/gnome-session/gsm-inhibit-dialog.glade
 %{_datadir}/gnome-session/session-properties.glade
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
