@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.23.6
+Version:	2.23.90
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	5d90cfa748e4dcdbd286398b23c20e7b
+# Source0-md5:	9d0621a8829e8f5611e4dcb65563cac8
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -15,14 +15,15 @@ BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.16.3
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gnome-keyring-devel >= 2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.12.9
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libgnomeui-devel >= 2.22.1
+BuildRequires:	libglade2-devel >= 1:2.6.2
+BuildRequires:	libgnomeui-devel >= 2.23.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
@@ -38,7 +39,7 @@ Requires:	gnome-control-center >= 1:2.22.0
 Requires:	gnome-keyring >= 2.22.0
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.22.1
+Requires:	libgnomeui >= 2.23.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -141,20 +142,16 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_libexecdir}/gnome-session/helpers
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-keyring-daemon-wrapper
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-login-sound
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
 %{_datadir}/gnome/autostart/at-spi-registryd-wrapper.desktop
 %{_datadir}/gnome/autostart/gnome-keyring-daemon-wrapper.desktop
-%{_datadir}/gnome/autostart/gnome-login-sound.desktop
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
 %{_datadir}/gnome/autostart/gnome-wm.desktop
 %dir %{_datadir}/gnome/default-session
-%dir %{_datadir}/gnome/shutdown
-%attr(755,root,root) %{_datadir}/gnome/shutdown/gnome-logout-sound.sh
 %dir %{_datadir}/gnome-session
 %{_datadir}/gnome-session/gsm-inhibit-dialog.glade
 %{_datadir}/gnome-session/session-properties.glade
