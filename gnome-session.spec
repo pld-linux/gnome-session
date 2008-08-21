@@ -107,6 +107,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -152,6 +153,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
 %{_datadir}/gnome/autostart/gnome-wm.desktop
 %dir %{_datadir}/gnome/default-session
+%dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
 %{_datadir}/gnome-session/gsm-inhibit-dialog.glade
 %{_datadir}/gnome-session/session-properties.glade
