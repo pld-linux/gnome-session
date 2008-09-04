@@ -1,12 +1,12 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.23.90
+Version:	2.23.91
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d0621a8829e8f5611e4dcb65563cac8
+# Source0-md5:	31396c7f737b10cfab8ee09dbd5fa967
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
@@ -81,9 +81,6 @@ Standardowy ekran startowy GNOME.
 %patch0 -p1
 %patch1 -p1
 
-sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
-mv po/sr@{Latn,latin}.po
-
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
@@ -151,7 +148,6 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-keyring-daemon-wrapper.desktop
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
-%{_datadir}/gnome/autostart/gnome-wm.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
