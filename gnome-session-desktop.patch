@@ -6,7 +6,7 @@ diff -urN gnome-session-2.17.92/data/session-properties.desktop.in.in gnome-sess
  Type=Application
  StartupNotify=true
 -Categories=Settings;X-GNOME-PersonalSettings;
-+Categories=GTK;GNOME;Settings;X-GNOME-PersonalSettings;X-Capplet;
++Categories=GTK;GNOME;Settings;X-GNOME-PersonalSettings;
  OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-session
