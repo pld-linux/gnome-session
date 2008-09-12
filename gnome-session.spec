@@ -8,6 +8,7 @@ Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.23/%{name}-%{version}.tar.bz2
 # Source0-md5:	31396c7f737b10cfab8ee09dbd5fa967
 Source1:	%{name}-gnome.desktop
+# http://bugzilla.gnome.org/show_bug.cgi?id=552050
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
