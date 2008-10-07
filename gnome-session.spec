@@ -90,6 +90,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-ipv6 \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
