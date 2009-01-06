@@ -1,44 +1,47 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.24.2
-Release:	1
+Version:	2.22.3
+Release:	2
+Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	13e882a8c73bebb5403c207da0455156
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	859b61b5368aa000c9bcb8b0d0688ca2
 Source1:	%{name}-gnome.desktop
-Patch0:		%{name}-configure.patch
-Patch1:		%{name}-splash.patch
+Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-configure.patch
+Patch2:		%{name}-no_G_DEBUG.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.24.0
-BuildRequires:	PolicyKit-gnome-devel >= 0.7
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-glib-devel >= 0.76
+BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gnome-keyring-devel >= 2.24.0
-BuildRequires:	gtk+2-devel >= 2:2.14.0
-BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libglade2-devel >= 1:2.6.2
-BuildRequires:	libgnomeui-devel >= 2.24.0
+BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
+BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	glib2-devel >= 1:2.16.3
+BuildRequires:	gnome-common >= 2.20.0
+BuildRequires:	gnome-keyring-devel >= 2.22.0
+BuildRequires:	gtk+2-devel >= 2:2.12.9
+BuildRequires:	intltool >= 0.36.1
+BuildRequires:	libgnomeui-devel >= 2.22.1
+BuildRequires:	libnotify-devel >= 0.2.1
+BuildRequires:	libselinux-devel >= 1.34
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	startup-notification-devel
-BuildRequires:	xorg-lib-xtrans-devel
+BuildRequires:	sed >= 4.0
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	PolicyKit-gnome >= 0.7
-Requires:	gnome-control-center >= 1:2.24.0
-Requires:	gnome-keyring >= 2.24.0
+Requires:	gnome-control-center >= 1:2.22.0
+Requires:	gnome-keyring >= 2.22.0
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.24.0
+Requires:	libgnomeui >= 2.22.1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,9 +82,10 @@ Standardowy ekran startowy GNOME.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
-mv ChangeLog main-ChangeLog
-find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
+sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
+mv po/sr@{Latn,latin}.po
 
 %build
 %{__glib_gettextize}
@@ -92,7 +96,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-ipv6 \
+	--with-at-spi-registryd-directory=%{_libdir}/at-spi \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
@@ -103,14 +107,16 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
+
+# kill it, breaks short-circuit
+mv ChangeLog main-ChangeLog
+find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -134,25 +140,12 @@ rm -fr $RPM_BUILD_ROOT
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-properties
+%attr(755,root,root) %{_bindir}/gnome-session-remove
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
-%dir %{_libexecdir}/gnome-session
-%dir %{_libexecdir}/gnome-session/helpers
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-keyring-daemon-wrapper
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
-%{_datadir}/gnome/autostart/at-spi-registryd-wrapper.desktop
-%{_datadir}/gnome/autostart/gnome-keyring-daemon-wrapper.desktop
-%{_datadir}/gnome/autostart/gnome-session-splash.desktop
-%{_datadir}/gnome/autostart/gnome-settings-daemon-helper.desktop
-%dir %{_datadir}/gnome/default-session
-%dir %{_datadir}/gnome/shutdown
-%dir %{_datadir}/gnome-session
-%{_datadir}/gnome-session/gsm-inhibit-dialog.glade
-%{_datadir}/gnome-session/session-properties.glade
+%{_datadir}/gnome/default.session
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
