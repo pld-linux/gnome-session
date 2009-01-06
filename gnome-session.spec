@@ -1,3 +1,9 @@
+#
+# NOTE:
+#	- DO NOT upgrade this spec to new version until
+#	http://bugzilla.gnome.org/show_bug.cgi?id=552387 gets fixes
+#	(and I mean FIXED, not CLOSED)
+#
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
