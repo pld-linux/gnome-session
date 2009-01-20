@@ -8,7 +8,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.22.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -74,7 +74,7 @@ GNOME.
 Summary:	GNOME splash screen
 Summary(pl.UTF-8):	Ekran startowy GNOME
 Group:		X11/Amusements
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	gnome-splash
 Obsoletes:	gnome-splash
 
