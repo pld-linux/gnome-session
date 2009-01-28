@@ -1,12 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.24.2
+Version:	2.24.3
+Epoch:		1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	13e882a8c73bebb5403c207da0455156
+# Source0-md5:	5daf3307ec791953436484696b263093
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-configure.patch
 Patch1:		%{name}-splash.patch
@@ -65,7 +66,7 @@ GNOME.
 Summary:	GNOME splash screen
 Summary(pl.UTF-8):	Ekran startowy GNOME
 Group:		X11/Amusements
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	gnome-splash
 Obsoletes:	gnome-splash
 
