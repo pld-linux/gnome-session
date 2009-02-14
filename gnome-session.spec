@@ -8,7 +8,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.22.3
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -102,7 +102,6 @@ mv po/sr@{Latn,latin}.po
 %{__autoheader}
 %{__automake}
 %configure \
-	--with-at-spi-registryd-directory=%{_libdir}/at-spi \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
@@ -112,7 +111,7 @@ mv po/sr@{Latn,latin}.po
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,shutdown}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -151,6 +150,7 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-wm
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
+%dir %{_datadir}/gnome/shutdown
 %{_datadir}/gnome/default.session
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
