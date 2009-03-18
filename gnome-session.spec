@@ -147,7 +147,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
-%dir %{_datadir}/gnome/gnome-session
+%dir %{_datadir}/gnome-session
 %{_datadir}/gnome-session/gsm-inhibit-dialog.glade
 %{_datadir}/gnome-session/session-properties.glade
 %{_datadir}/xsessions/gnome.desktop
