@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.26.0
 Epoch:		1
-Release:	2
+Release:	3
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
@@ -17,7 +17,7 @@ BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
@@ -81,6 +81,9 @@ cd gnome-session
 %patch1 -p0
 cd ..
 
+mv ChangeLog main-ChangeLog
+find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
+
 %build
 %{__glib_gettextize}
 %{__intltoolize}
@@ -90,6 +93,7 @@ cd ..
 %{__autoheader}
 %{__automake}
 %configure \
+	--enable-ipv6 \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
@@ -97,17 +101,15 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,shutdown}
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
-
-# kill it, breaks short-circuit
-mv ChangeLog main-ChangeLog
-find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -131,7 +133,6 @@ rm -fr $RPM_BUILD_ROOT
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-properties
-%attr(755,root,root) %{_bindir}/gnome-session-remove
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
 %dir %{_libexecdir}/gnome-session
@@ -146,7 +147,9 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
-%{_datadir}/gnome/default.session
+%dir %{_datadir}/gnome/gnome-session
+%{_datadir}/gnome-session/gsm-inhibit-dialog.glade
+%{_datadir}/gnome-session/session-properties.glade
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
