@@ -1,53 +1,43 @@
-#
-# NOTE:
-#	- DO NOT upgrade this spec to new version until
-#	http://bugzilla.gnome.org/show_bug.cgi?id=552387 gets fixed
-#	(and I mean FIXED, not CLOSED)
-#
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.22.3
-Release:	4
+Version:	2.26.0
 Epoch:		1
+Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	859b61b5368aa000c9bcb8b0d0688ca2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
+# Source0-md5:	e17dbce7446b3e42fac2b1cea7dedffd
 Source1:	%{name}-gnome.desktop
-Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-configure.patch
-Patch2:		%{name}-no_G_DEBUG.patch
+Patch0:		%{name}-splash.patch
+# http://bugzilla.gnome.org/show_bug.cgi?id=552387
+Patch1:		%{name}-saving.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.22.0
+BuildRequires:	GConf2-devel >= 2.26.0
+BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-settings-daemon-devel >= 1:2.22.0
-BuildRequires:	esound-devel >= 1:0.2.36
-BuildRequires:	glib2-devel >= 1:2.16.3
-BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-keyring-devel >= 2.22.0
-BuildRequires:	gtk+2-devel >= 2:2.12.9
-BuildRequires:	intltool >= 0.36.1
-BuildRequires:	libgnomeui-devel >= 2.22.1
-BuildRequires:	libnotify-devel >= 0.2.1
-BuildRequires:	libselinux-devel >= 1.34
+BuildRequires:	gnome-common >= 2.24.0
+BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	sed >= 4.0
+BuildRequires:	startup-notification-devel
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	gnome-control-center >= 1:2.22.0
-Requires:	gnome-keyring >= 2.22.0
+Requires:	PolicyKit-gnome >= 0.7
+Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-splash
 Requires:	gnome-wm
-Requires:	libgnomeui >= 2.22.1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -87,8 +77,9 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
+cd gnome-session
+%patch1 -p0
+cd ..
 
 sed -i -e 's#sr@Latn#sr@latin#' po/LINGUAS
 mv po/sr@{Latn,latin}.po
@@ -105,9 +96,7 @@ mv po/sr@{Latn,latin}.po
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
-%{__make} \
-	ESD_SERVER='%{_bindir}/esd' \
-	GNOME_KEYRING_DAEMON='%{_bindir}/gnome-keyring-daemon' \
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -148,8 +137,17 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-session-remove
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
+%dir %{_libexecdir}/gnome-session
+%dir %{_libexecdir}/gnome-session/helpers
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
+%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
+%{_sysconfdir}/xdg/autostart/at-spi-registryd-wrapper.desktop
+%{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
 %dir %{_datadir}/gnome/autostart
+%{_datadir}/gnome/autostart/gnome-session-splash.desktop
+%dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %{_datadir}/gnome/default.session
 %{_datadir}/xsessions/gnome.desktop
