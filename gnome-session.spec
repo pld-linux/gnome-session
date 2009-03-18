@@ -10,6 +10,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{ver
 # Source0-md5:	e17dbce7446b3e42fac2b1cea7dedffd
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
+# http://bugzilla.gnome.org/show_bug.cgi?id=552387
+Patch1:		%{name}-saving.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
@@ -75,6 +77,9 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
+cd gnome-session
+%patch1 -p0
+cd ..
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
