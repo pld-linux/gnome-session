@@ -1,17 +1,16 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.26.0
+Version:	2.26.0.90
 Epoch:		1
 Release:	4
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	e17dbce7446b3e42fac2b1cea7dedffd
+# Source0-md5:	b715b1de0de24a49eb91b41a6731919b
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 # http://bugzilla.gnome.org/show_bug.cgi?id=552387
-Patch1:		%{name}-saving.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
@@ -77,9 +76,6 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
-cd gnome-session
-%patch1 -p0
-cd ..
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
