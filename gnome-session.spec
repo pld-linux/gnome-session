@@ -1,16 +1,15 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.26.0.90
+Version:	2.26.1
 Epoch:		1
-Release:	4
+Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	b715b1de0de24a49eb91b41a6731919b
+# Source0-md5:	aa280939a3e07209081095e8e10fe619
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
-# http://bugzilla.gnome.org/show_bug.cgi?id=552387
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
