@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.26.1
+Version:	2.26.2
 Epoch:		1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa280939a3e07209081095e8e10fe619
+# Source0-md5:	2cc3ff808592d95c3b364d608e99dea4
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
@@ -26,6 +26,7 @@ BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-xtrans-devel
@@ -79,11 +80,14 @@ Standardowy ekran startowy GNOME.
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
+rm -f po/ca@valencia.po
+sed -i -e 's/ca@valencia//' po/LINGUAS
+
 %build
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
