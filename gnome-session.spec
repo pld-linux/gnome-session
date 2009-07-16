@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.26.2
+Version:	2.27.4
 Epoch:		1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	2cc3ff808592d95c3b364d608e99dea4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.27/%{name}-%{version}.tar.bz2
+# Source0-md5:	bf4d141f72c182d8eadc68e42a4a5343
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
@@ -20,7 +20,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
@@ -147,8 +146,8 @@ rm -fr $RPM_BUILD_ROOT
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
-%{_datadir}/gnome-session/gsm-inhibit-dialog.glade
-%{_datadir}/gnome-session/session-properties.glade
+%{_datadir}/gnome-session/gsm-inhibit-dialog.ui
+%{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
