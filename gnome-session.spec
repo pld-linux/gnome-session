@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.27.91
+Version:	2.27.92
 Epoch:		1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.27/%{name}-%{version}.tar.bz2
-# Source0-md5:	32aa03aca2aa6ec0b604b45d4064a140
+# Source0-md5:	605bc85419577ffda87170f79bc850d4
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
@@ -135,11 +135,9 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-wm
 %dir %{_libexecdir}/gnome-session
 %dir %{_libexecdir}/gnome-session/helpers
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
-%{_sysconfdir}/xdg/autostart/at-spi-registryd-wrapper.desktop
 %{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
 %dir %{_datadir}/gnome/default-session
