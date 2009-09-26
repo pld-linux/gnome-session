@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.26.2
+Version:	2.28.0
 Epoch:		1
 Release:	1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	2cc3ff808592d95c3b364d608e99dea4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.28/%{name}-%{version}.tar.bz2
+# Source0-md5:	b1a2307b02e833010d6c5312b9ff9048
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
@@ -20,7 +20,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
@@ -80,9 +79,6 @@ Standardowy ekran startowy GNOME.
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
-rm -f po/ca@valencia.po
-sed -i -e 's/ca@valencia//' po/LINGUAS
-
 %build
 %{__glib_gettextize}
 %{__intltoolize}
@@ -93,6 +89,7 @@ sed -i -e 's/ca@valencia//' po/LINGUAS
 %{__automake}
 %configure \
 	--enable-ipv6 \
+	--enable-splash \
 	--disable-schemas-install \
 	X_EXTRA_LIBS="-lXext"
 
@@ -100,7 +97,6 @@ sed -i -e 's/ca@valencia//' po/LINGUAS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
@@ -136,19 +132,16 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-wm
 %dir %{_libexecdir}/gnome-session
 %dir %{_libexecdir}/gnome-session/helpers
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/at-spi-registryd-wrapper
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
 %attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
-%{_sysconfdir}/xdg/autostart/at-spi-registryd-wrapper.desktop
+%{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
-%dir %{_datadir}/gnome/autostart
-%{_datadir}/gnome/autostart/gnome-session-splash.desktop
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
-%{_datadir}/gnome-session/gsm-inhibit-dialog.glade
-%{_datadir}/gnome-session/session-properties.glade
+%{_datadir}/gnome-session/gsm-inhibit-dialog.ui
+%{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/xsessions/gnome.desktop
 %dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
