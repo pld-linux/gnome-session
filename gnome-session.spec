@@ -2,8 +2,8 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.28.0
+Release:	2
 Epoch:		1
-Release:	1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.28/%{name}-%{version}.tar.bz2
@@ -11,6 +11,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.28/%{name}-%{ver
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
+BuildRequires:	DeviceKit-power-devel >= 008
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
@@ -32,6 +33,7 @@ BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
+Requires:	DeviceKit-power >= 008
 Requires:	PolicyKit-gnome >= 0.7
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-splash
@@ -97,6 +99,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
@@ -137,6 +140,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
 %{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
+%dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
