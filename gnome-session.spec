@@ -12,6 +12,7 @@ Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
 BuildRequires:	DeviceKit-power-devel >= 008
+BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
