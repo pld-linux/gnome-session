@@ -1,20 +1,19 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.28.0
-Release:	2
+Version:	2.29.6
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	b1a2307b02e833010d6c5312b9ff9048
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.29/%{name}-%{version}.tar.bz2
+# Source0-md5:	c020fbb10f500bb1277dcf5ed61d336a
 Source1:	%{name}-gnome.desktop
 Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
 BuildRequires:	DeviceKit-power-devel >= 008
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	PolicyKit-gnome-devel >= 0.7
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.76
@@ -35,10 +34,10 @@ Requires(post,postun):	gtk+2
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	DeviceKit-power >= 008
-Requires:	PolicyKit-gnome >= 0.7
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-splash
 Requires:	gnome-wm
+Requires:	polkit-gnome
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -78,6 +77,9 @@ Standardowy ekran startowy GNOME.
 %prep
 %setup -q
 %patch0 -p1
+
+sed -i -e 's/^en@shaw//' po/LINGUAS
+rm -f po/en@shaw.po
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
