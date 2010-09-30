@@ -1,15 +1,14 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.30.2
+Version:	2.32.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.30/%{name}-%{version}.tar.bz2
-# Source0-md5:	d93a2da931ac0b9c0d98f6b68a17a730
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.32/%{name}-%{version}.tar.bz2
+# Source0-md5:	b348bd024fbce264f74a174ebcdf3947
 Source1:	%{name}-gnome.desktop
-Patch0:		%{name}-splash.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
@@ -35,11 +34,11 @@ Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	UPower
 Requires:	gnome-control-center >= 1:2.26.0
-Requires:	gnome-splash
 Requires:	gnome-wm
 Requires:	polkit-gnome
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+Obsoletes:	gnome-splash-gnome < 1:2.32.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,23 +59,8 @@ całkowicie na wolnym oprogramowaniu.
 Pakiet gnome-session zawiera narzędzia do obsługi sesji dla desktopu
 GNOME.
 
-%package -n gnome-splash-gnome
-Summary:	GNOME splash screen
-Summary(pl.UTF-8):	Ekran startowy GNOME
-Group:		X11/Amusements
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	gnome-splash
-Obsoletes:	gnome-splash
-
-%description -n gnome-splash-gnome
-Default GNOME splash screen.
-
-%description -n gnome-splash-gnome -l pl.UTF-8
-Standardowy ekran startowy GNOME.
-
 %prep
 %setup -q
-%patch0 -p1
 
 sed -i -e 's/^en@shaw//' po/LINGUAS
 rm -f po/en@shaw.po
@@ -94,7 +78,6 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__automake}
 %configure \
 	--enable-ipv6 \
-	--enable-splash \
 	--disable-schemas-install \
 	--disable-silent-rules \
 	X_EXTRA_LIBS="-lXext"
@@ -137,13 +120,7 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
-%dir %{_libexecdir}/gnome-session
-%dir %{_libexecdir}/gnome-session/helpers
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-session-splash
-%attr(755,root,root) %{_libexecdir}/gnome-session/helpers/gnome-settings-daemon-helper
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
-%{_sysconfdir}/xdg/autostart/gnome-session-splash.desktop
-%{_sysconfdir}/xdg/autostart/gnome-settings-daemon-helper.desktop
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
@@ -151,11 +128,6 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/xsessions/gnome.desktop
-%dir %{_pixmapsdir}/splash
 %{_mandir}/man[15]/*
 %{_desktopdir}/session-properties.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
-
-%files -n gnome-splash-gnome
-%defattr(644,root,root,755)
-%{_pixmapsdir}/splash/gnome-splash.png
