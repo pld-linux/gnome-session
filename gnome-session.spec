@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.32.0
+Version:	2.32.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.32/%{name}-%{version}.tar.bz2
-# Source0-md5:	b348bd024fbce264f74a174ebcdf3947
+# Source0-md5:	222bad6b446cb19a6b9028ea24538002
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
@@ -37,8 +37,8 @@ Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-wm
 Requires:	polkit-gnome
 # sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
