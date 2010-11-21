@@ -1,32 +1,34 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.32.1
-Release:	1
+Version:	2.91.0
+Release:	0.1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.32/%{name}-%{version}.tar.bz2
-# Source0-md5:	222bad6b446cb19a6b9028ea24538002
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
+# Source0-md5:	7c5860488bfae64f8ddbcaa833ab0d65
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	UPower-devel
+BuildRequires:	UPower-devel >= 0.9.0
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 2.16.0
 BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	gtk+3-devel >= 2.91.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
+BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk+2
@@ -63,7 +65,7 @@ GNOME.
 %setup -q
 
 sed -i -e 's/^en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
+%{__rm} po/en@shaw.po
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
@@ -78,8 +80,11 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__automake}
 %configure \
 	--enable-ipv6 \
+	--with-gtk=3.0 \
+	--with-default-wm=gnome-wm \
 	--disable-schemas-install \
 	--disable-silent-rules \
+	--enable-docbook-docs \
 	X_EXTRA_LIBS="-lXext"
 
 %{__make}
@@ -115,7 +120,7 @@ rm -fr $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS *ChangeLog NEWS README
+%doc AUTHORS *ChangeLog NEWS README doc/dbus/gnome-session.html
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-save
@@ -130,4 +135,5 @@ rm -fr $RPM_BUILD_ROOT
 %{_datadir}/xsessions/gnome.desktop
 %{_mandir}/man[15]/*
 %{_desktopdir}/session-properties.desktop
+%{_desktopdir}/gnome-wm.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
