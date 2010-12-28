@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.91.0
+Version:	2.91.4
 Release:	0.1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	7c5860488bfae64f8ddbcaa833ab0d65
+# Source0-md5:	fcdfb55c1ea67df1391947c32e6efbcc
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
@@ -19,7 +19,7 @@ BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 2.16.0
 BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gtk+3-devel >= 2.91.0
+BuildRequires:	gtk+3-devel >= 2.91.7
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
@@ -125,13 +125,17 @@ rm -fr $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
+%attr(755,root,root) %{_libdir}/gnome-session-is-accelerated
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
 %dir %{_datadir}/gnome-session
+%dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/session-properties.ui
+%{_datadir}/gnome-session/sessions/classic-gnome.session
+%{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/xsessions/gnome.desktop
 %{_mandir}/man[15]/*
 %{_desktopdir}/session-properties.desktop
