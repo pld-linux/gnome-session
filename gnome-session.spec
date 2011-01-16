@@ -23,15 +23,23 @@ BuildRequires:	gtk+3-devel >= 2.91.7
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
+BuildRequires:	pango-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	pkgconfig(gl)
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	xmlto
+BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXau-devel
+BuildRequires:	xorg-lib-libXcomposite-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXrender-devel
+BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	UPower
@@ -115,8 +123,10 @@ rm -fr $RPM_BUILD_ROOT
 %gconf_schema_uninstall gnome-session.schemas
 
 %postun
-/sbin/ldconfig
-%update_icon_cache hicolor
+if [ "$1" = "0" ]; then
+	/sbin/ldconfig
+	%update_icon_cache hicolor
+fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
