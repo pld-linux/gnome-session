@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.91.4
+Version:	2.91.6
 Release:	0.1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	fcdfb55c1ea67df1391947c32e6efbcc
+# Source0-md5:	3058118fcc4239af4b2c1ac9a7414866
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
@@ -89,7 +89,6 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %configure \
 	--enable-ipv6 \
 	--with-gtk=3.0 \
-	--with-default-wm=gnome-wm \
 	--disable-schemas-install \
 	--disable-silent-rules \
 	--enable-docbook-docs \
@@ -116,16 +115,14 @@ rm -fr $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%gconf_schema_install gnome-session.schemas
+%glib_compile_schemas
 %update_icon_cache hicolor
-
-%preun
-%gconf_schema_uninstall gnome-session.schemas
 
 %postun
 if [ "$1" = "0" ]; then
 	/sbin/ldconfig
 	%update_icon_cache hicolor
+	%glib_compile_schemas
 fi
 
 %files -f %{name}.lang
@@ -134,9 +131,9 @@ fi
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-save
-%attr(755,root,root) %{_bindir}/gnome-wm
 %attr(755,root,root) %{_libdir}/gnome-session-is-accelerated
-%{_sysconfdir}/gconf/schemas/gnome-session.schemas
+%{_datadir}/GConf/gsettings/org.gnome.SessionManager.gschema.migrate
+%{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
@@ -144,10 +141,9 @@ fi
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/session-properties.ui
-%{_datadir}/gnome-session/sessions/classic-gnome.session
+%{_datadir}/gnome-session/sessions/gnome-fallback.session
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/xsessions/gnome.desktop
 %{_mandir}/man[15]/*
 %{_desktopdir}/session-properties.desktop
-%{_desktopdir}/gnome-wm.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
