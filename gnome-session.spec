@@ -2,7 +2,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.32.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -29,7 +29,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-xtrans-devel
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
 Requires:	UPower
