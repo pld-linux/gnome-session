@@ -2,7 +2,7 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.91.6
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -17,9 +17,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 2.16.0
+BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gtk+3-devel >= 2.91.7
+BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libtool
 BuildRequires:	libwrap-devel
@@ -46,6 +46,7 @@ Requires:	UPower
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-wm
 Requires:	polkit-gnome
+Requires:	gnome-screensaver >= 2.91.4
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
 Conflicts:	glibc-misc < 6:2.7
