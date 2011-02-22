@@ -1,35 +1,34 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.91.6
+Version:	2.91.90
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	3058118fcc4239af4b2c1ac9a7414866
+# Source0-md5:	6002cd03df975675ca579775b265018e
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	UPower-devel >= 0.9.0
 BuildRequires:	autoconf
-BuildRequires:	automake >= 1:1.9
+BuildRequires:	automake >= 1:1.10
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libtool
-BuildRequires:	libwrap-devel
-BuildRequires:	pango-devel
+BuildRequires:	librsvg-devel
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	pkgconfig(gl)
-BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
+BuildRequires:	upower-devel >= 0.9.0
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
@@ -39,14 +38,15 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
-Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
-Requires(post,preun):	GConf2
-Requires:	UPower
+Requires(post,postun):	glib2 >= 1:2.28.0
 Requires:	gnome-control-center >= 1:2.26.0
-Requires:	gnome-wm
-Requires:	polkit-gnome
 Requires:	gnome-screensaver >= 2.91.4
+Requires:	gnome-wm
+Requires:	gsettings-desktop-schemas >= 0.1.7
+Requires:	gtk-update-icon-cache
+Requires:	hicolor-icon-theme
+Requires:	polkit-gnome
+Requires:	upower
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
 Conflicts:	glibc-misc < 6:2.7
@@ -72,9 +72,6 @@ GNOME.
 
 %prep
 %setup -q
-
-sed -i -e 's/^en@shaw//' po/LINGUAS
-%{__rm} po/en@shaw.po
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
@@ -141,6 +138,7 @@ fi
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
+%{_datadir}/gnome-session/sad-computer.svgz
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome-fallback.session
 %{_datadir}/gnome-session/sessions/gnome.session
