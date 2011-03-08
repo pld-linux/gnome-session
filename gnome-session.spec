@@ -42,7 +42,7 @@ Requires(post,postun):	glib2 >= 1:2.28.0
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-screensaver >= 2.91.4
 Requires:	gnome-wm
-Requires:	gsettings-desktop-schemas >= 0.1.7
+Requires:	gsettings-desktop-schemas >= 2.91.91
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	polkit-gnome
