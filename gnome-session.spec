@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.91.91
+Version:	2.91.91.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	d18a72fb4449fac36a07c45e542ec667
+# Source0-md5:	c6d608c4a36c400f1529f10fffb2bd1e
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
@@ -86,7 +86,6 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__automake}
 %configure \
 	--enable-ipv6 \
-	--with-gtk=3.0 \
 	--disable-schemas-install \
 	--disable-silent-rules \
 	--enable-docbook-docs \
