@@ -98,7 +98,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
+sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE2} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 
 %find_lang %{name} --with-gnome --all-name
 
