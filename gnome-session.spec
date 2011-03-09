@@ -2,13 +2,14 @@ Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
 Version:	2.32.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.32/%{name}-%{version}.tar.bz2
 # Source0-md5:	222bad6b446cb19a6b9028ea24538002
 Source1:	%{name}-gnome.desktop
+Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
@@ -35,10 +36,11 @@ Requires(post,preun):	GConf2
 Requires:	UPower
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-wm
-Requires:	polkit-gnome
+Requires:	polkit-gnome >= 0.101
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
 Conflicts:	glibc-misc < 6:2.7
+Conflicts:	polkit-gnome < 0.101
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -86,6 +88,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
@@ -95,6 +98,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -121,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gnome-session-save
 %attr(755,root,root) %{_bindir}/gnome-wm
 %{_sysconfdir}/gconf/schemas/gnome-session.schemas
+%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
 %dir %{_datadir}/gnome/shutdown
