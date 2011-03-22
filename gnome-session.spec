@@ -1,13 +1,13 @@
 Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
 Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
 Name:		gnome-session
-Version:	2.91.91.3
+Version:	2.91.92
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	72c334c53ba2954ba06a9f7f0cf00798
+# Source0-md5:	17858dce3d0c4937c9a884dce231465f
 Source1:	%{name}-gnome.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
@@ -23,7 +23,7 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	librsvg-devel
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	perl-base
-BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
@@ -138,7 +138,6 @@ fi
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
-%{_datadir}/gnome-session/sad-computer.svgz
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome-fallback.session
 %{_datadir}/gnome-session/sessions/gnome.session
