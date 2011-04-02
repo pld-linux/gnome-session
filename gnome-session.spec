@@ -1,5 +1,5 @@
-Summary:	The GNOME desktop programs for the GNOME2 GUI desktop environment
-Summary(pl.UTF-8):	Programy dla desktopu środowiska graficznego GNOME2
+Summary:	Session support tools for the GNOME GUI desktop environment
+Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	2.32.1
 Release:	3
@@ -26,7 +26,6 @@ BuildRequires:	libwrap-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
-BuildRequires:	sed >= 4.0
 BuildRequires:	startup-notification-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-xtrans-devel
@@ -44,28 +43,25 @@ Conflicts:	polkit-gnome < 0.101
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GNOME2 (GNU Network Object Model Environment) is a user-friendly set
+GNOME (GNU Network Object Model Environment) is a user-friendly set
 of applications and desktop tools to be used in conjunction with a
-window manager for the X Window System. GNOME2 is similar in purpose
-and scope to CDE and KDE, but GNOME2 is based completely on free
+window manager for the X Window System. GNOME is similar in purpose
+and scope to CDE and KDE, but GNOME is based completely on free
 software.
 
-GNOME2 session provides the session tools for the the GNOME desktop.
+GNOME session provides the session tools for the the GNOME desktop.
 
 %description -l pl.UTF-8
-GNOME2 (GNU Network Object Model Environment) to zestaw przyjaznych
+GNOME (GNU Network Object Model Environment) to zestaw przyjaznych
 dla użytkownika aplikacji i narzędzi do używania w połączeniu z
-zarządcą okien pod X. GNOME2 ma podobny cel jak CDE i KDE, ale bazuje
+zarządcą okien pod X. GNOME ma podobny cel jak CDE i KDE, ale bazuje
 całkowicie na wolnym oprogramowaniu.
 
-Pakiet gnome-session zawiera narzędzia do obsługi sesji dla desktopu
-GNOME.
+Pakiet gnome-session zawiera narzędzia do obsługi sesji dla środowiska
+graficznego GNOME.
 
 %prep
 %setup -q
-
-sed -i -e 's/^en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
