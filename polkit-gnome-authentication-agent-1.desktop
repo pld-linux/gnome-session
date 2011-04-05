@@ -85,3 +85,4 @@ Type=Application
 Categories=
 NoDisplay=true
 OnlyShowIn=GNOME;
+AutostartCondition=GNOME3 is-session gnome-fallback

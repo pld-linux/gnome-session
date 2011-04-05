@@ -46,7 +46,7 @@ Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 2.91.91
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
-Requires:	polkit-gnome
+Requires:	polkit-gnome >= 0.101
 Requires:	upower
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
