@@ -2,7 +2,7 @@ Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	3.0.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -48,6 +48,8 @@ Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	polkit-gnome >= 0.101
 Requires:	upower
+# needs notification-daemon in fallback mode to function
+Suggests:	dbus(org.freedesktop.Notifications)
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
 Conflicts:	glibc-misc < 6:2.7
