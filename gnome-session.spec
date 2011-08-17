@@ -2,7 +2,7 @@ Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	3.0.2
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -40,6 +40,7 @@ BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	glib2 >= 1:2.28.0
+Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-screensaver >= 2.91.4
 Requires:	gnome-wm
@@ -106,7 +107,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
-install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
 sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE2} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 
 %find_lang %{name} --with-gnome --all-name
