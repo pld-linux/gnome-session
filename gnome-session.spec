@@ -32,10 +32,10 @@ BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	upower
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-wm
 Requires:	polkit-gnome >= 0.101
+Requires:	upower
 # sr@Latn vs. sr@latin
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
 Conflicts:	glibc-misc < 6:2.7
@@ -43,19 +43,18 @@ Conflicts:	polkit-gnome < 0.101
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GNOME (GNU Network Object Model Environment) is a user-friendly set
-of applications and desktop tools to be used in conjunction with a
-window manager for the X Window System. GNOME is similar in purpose
-and scope to CDE and KDE, but GNOME is based completely on free
-software.
+GNOME (GNU Network Object Model Environment) is a user-friendly set of
+applications and desktop tools to be used in conjunction with a window
+manager for the X Window System. GNOME is similar in purpose and scope
+to CDE and KDE, but GNOME is based completely on free software.
 
 GNOME session provides the session tools for the the GNOME desktop.
 
 %description -l pl.UTF-8
-GNOME (GNU Network Object Model Environment) to zestaw przyjaznych
-dla użytkownika aplikacji i narzędzi do używania w połączeniu z
-zarządcą okien pod X. GNOME ma podobny cel jak CDE i KDE, ale bazuje
-całkowicie na wolnym oprogramowaniu.
+GNOME (GNU Network Object Model Environment) to zestaw przyjaznych dla
+użytkownika aplikacji i narzędzi do używania w połączeniu z zarządcą
+okien pod X. GNOME ma podobny cel jak CDE i KDE, ale bazuje całkowicie
+na wolnym oprogramowaniu.
 
 Pakiet gnome-session zawiera narzędzia do obsługi sesji dla środowiska
 graficznego GNOME.
