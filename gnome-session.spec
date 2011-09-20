@@ -2,7 +2,7 @@ Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	2.32.1
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -13,7 +13,6 @@ Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2
 BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	UPower-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.76
@@ -27,12 +26,13 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	startup-notification-devel
+BuildRequires:	upower-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,preun):	GConf2
-Requires:	UPower
+Requires:	upower
 Requires:	gnome-control-center >= 1:2.26.0
 Requires:	gnome-wm
 Requires:	polkit-gnome >= 0.101
