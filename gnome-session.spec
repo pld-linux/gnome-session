@@ -1,13 +1,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.0.2
-Release:	4
+Version:	3.2.0
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	a90f6f7e12cc545bc84a3246d8b744d3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.2/%{name}-%{version}.tar.xz
+# Source0-md5:	c9c8f87fad491e9f040b2a9d6b8874a4
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
@@ -21,14 +21,13 @@ BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	librsvg-devel
-BuildRequires:	libtool >= 2:2.2
+BuildRequires:	json-glib-devel >= 0.10
+BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
-BuildRequires:	startup-notification-devel
 BuildRequires:	upower-devel >= 0.9.0
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
@@ -41,14 +40,14 @@ BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
 Requires(post,postun):	glib2 >= 1:2.28.0
 Requires:	dbus-x11
-Requires:	gnome-control-center >= 1:2.26.0
-Requires:	gnome-screensaver >= 2.91.4
+Requires:	gnome-control-center >= 1:3.0.0
+Requires:	gnome-screensaver >= 3.0.0
 Requires:	gnome-wm
-Requires:	gsettings-desktop-schemas >= 2.91.91
+Requires:	gsettings-desktop-schemas >= 3.2.0
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	polkit-gnome >= 0.101
-Requires:	upower
+Requires:	upower >= 0.9.0
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
 # sr@Latn vs. sr@latin
@@ -90,7 +89,6 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %{__automake}
 %configure \
 	--enable-ipv6 \
-	--disable-schemas-install \
 	--disable-silent-rules \
 	X_EXTRA_LIBS="-lXext"
 
