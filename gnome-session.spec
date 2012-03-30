@@ -1,12 +1,12 @@
 #
 # Conditiional build:
-%bcond_with	systemd # rely on systemd for session tracking instead of ConsoleKit
+%bcond_without	systemd # rely on systemd for session tracking instead of ConsoleKit
 #
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	3.4.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
