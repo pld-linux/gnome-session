@@ -1,6 +1,6 @@
 #
 # Conditiional build:
-%bcond_without	systemd # rely on systemd for session tracking instead of ConsoleKit
+%bcond_without	systemd # enable systemd support for default (when systemd is not running fallback to ConsoleKit)
 #
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
