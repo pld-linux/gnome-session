@@ -5,13 +5,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.4.2
+Version:	3.4.2.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	691251cb745463082692a20599c938e8
+# Source0-md5:	7254bcc8e1e493cbf2a27e4f3cbe966b
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
