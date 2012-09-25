@@ -5,23 +5,21 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.4.2.1
+Version:	3.6.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	7254bcc8e1e493cbf2a27e4f3cbe966b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.6/%{name}-%{version}.tar.xz
+# Source0-md5:	cae664cf59558b2227b73b292689a1d7
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2
-BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.28.0
+BuildRequires:	glib2-devel >= 1:2.33.4
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.6
@@ -33,7 +31,7 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
-%{?with_systemd:BuildRequires:	systemd-devel}
+%{?with_systemd:BuildRequires:	systemd-devel >= 183}
 BuildRequires:	upower-devel >= 0.9.0
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
@@ -97,7 +95,8 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 	--enable-ipv6 \
 	%{__enable_disable systemd systemd} \
 	--disable-silent-rules \
-	X_EXTRA_LIBS="-lXext"
+	X_EXTRA_LIBS="-lXext" \
+	--disable-gconf
 
 %{__make}
 
