@@ -5,29 +5,31 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.6.2
+Version:	3.8.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.6/%{name}-%{version}.tar.xz
-# Source0-md5:	355730543dbcc166f331d806cd0da22d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.8/%{name}-%{version}.tar.xz
+# Source0-md5:	54ae6d72bd043148bd9975ba39c8ecdf
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
+BuildRequires:	Mesa-libGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.33.4
+BuildRequires:	glib2-devel >= 1:2.35.0
 BuildRequires:	gnome-common >= 2.24.0
+BuildRequires:	gnome-desktop-devel >= 3.7.90
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.6
 BuildRequires:	json-glib-devel >= 0.10
 BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	libxslt-progs
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
-BuildRequires:	pkgconfig(gl)
 BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
@@ -42,9 +44,10 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
-Requires(post,postun):	glib2 >= 1:2.28.0
+Requires(post,postun):	glib2 >= 1:2.35.0
 Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
+Requires:	gnome-desktop >= 3.7.90
 Requires:	gnome-screensaver >= 3.4.0
 Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 3.4.0
@@ -135,10 +138,12 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
+%attr(755,root,root) %{_bindir}/gnome-session-inhibit
 %attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-quit
 %attr(755,root,root) %{_libdir}/gnome-session-check-accelerated
 %attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-helper
+%attr(755,root,root) %{_libdir}/gnome-session-failed
 %{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
@@ -150,8 +155,8 @@ fi
 %{_datadir}/gnome-session/gsm-inhibit-dialog.ui
 %{_datadir}/gnome-session/hardware-compatibility
 %{_datadir}/gnome-session/session-properties.ui
-%{_datadir}/gnome-session/sessions/gnome-fallback.session
 %{_datadir}/gnome-session/sessions/gnome.session
+%{_datadir}/gnome-session/sessions/gnome-dummy.session
 %{_datadir}/xsessions/gnome.desktop
 %{_mandir}/man[15]/*
 %{_desktopdir}/session-properties.desktop
