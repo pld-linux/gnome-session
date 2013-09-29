@@ -48,7 +48,6 @@ Requires(post,postun):	glib2 >= 1:2.35.0
 Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
 Requires:	gnome-desktop >= 3.10.0
-Requires:	gnome-screensaver >= 3.4.0
 Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 3.4.0
 Requires:	gtk-update-icon-cache
