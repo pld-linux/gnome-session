@@ -5,13 +5,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.10.1
+Version:	3.12.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	f77a89c38bc17b64829a2f2811bc5f34
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	cf08255030b0ff968a4900eff1c125c6
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
@@ -34,7 +34,8 @@ BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
 %{?with_systemd:BuildRequires:	systemd-devel >= 183}
-BuildRequires:	upower-devel >= 0.9.0
+#no support for new UPower at the moment
+#BuildRequires:	upower-devel >= 0.9.0
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
@@ -53,7 +54,6 @@ Requires:	gsettings-desktop-schemas >= 3.4.0
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	polkit-gnome >= 0.101
-Requires:	upower >= 0.9.0
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
 # sr@Latn vs. sr@latin
@@ -138,7 +138,6 @@ fi
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-inhibit
-%attr(755,root,root) %{_bindir}/gnome-session-properties
 %attr(755,root,root) %{_bindir}/gnome-session-quit
 %attr(755,root,root) %{_libdir}/gnome-session-check-accelerated
 %attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-helper
@@ -159,5 +158,4 @@ fi
 %{_datadir}/wayland-sessions/gnome-wayland.desktop
 %{_datadir}/xsessions/gnome.desktop
 %{_mandir}/man[15]/*
-%{_desktopdir}/gnome-session-properties.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
