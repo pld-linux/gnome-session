@@ -20,7 +20,7 @@ BuildRequires:	Mesa-libGL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.76
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.35.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 3.10.0
