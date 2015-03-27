@@ -1,17 +1,18 @@
 #
 # Conditiional build:
-%bcond_without	systemd		# enable systemd support by default (when systemd is not running fallback to ConsoleKit)
+%bcond_without	systemd		# disable systemd tracking support
+%bcond_without	consolekit	# disable ConsoleKit tracking support (when systemd is enabled use as a fallback)
 #
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.14.0
-Release:	2
+Version:	3.16.0
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.14/%{name}-%{version}.tar.xz
-# Source0-md5:	ca05c48f7dfe6ddd78ac0a6bffb9592a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.16/%{name}-%{version}.tar.xz
+# Source0-md5:	092e9227a775c0c8852471a5fd2869aa
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
@@ -95,6 +96,7 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 %configure \
 	--enable-ipv6 \
 	%{__enable_disable systemd systemd} \
+	%{__enable_disable consolekit consolekit} \
 	--disable-silent-rules \
 	X_EXTRA_LIBS="-lXext" \
 	--disable-gconf
