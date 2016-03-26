@@ -6,13 +6,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.18.1.2
+Version:	3.20.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	36cf2abe3f54197e7edd72d6011507b3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	a15149575c5297ad92da8832005bc202
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
@@ -22,10 +22,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.35.0
+BuildRequires:	glib2-devel >= 1:2.46.0
 BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gnome-desktop-devel >= 3.10.0
-BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gnome-desktop-devel >= 3.18.0
+BuildRequires:	gtk+3-devel >= 3.18.0
 BuildRequires:	intltool >= 0.40.6
 BuildRequires:	json-glib-devel >= 0.10
 BuildRequires:	libtool >= 2:2.2.6
@@ -35,7 +35,7 @@ BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
-%{?with_systemd:BuildRequires:	systemd-devel >= 183}
+%{?with_systemd:BuildRequires:	systemd-devel >= 209}
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
@@ -45,11 +45,12 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-xtrans-devel
-Requires(post,postun):	glib2 >= 1:2.35.0
+Requires(post,postun):	glib2 >= 1:2.46.0
 Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
-Requires:	gnome-desktop >= 3.10.0
+Requires:	gnome-desktop >= 3.18.0
 Requires:	gnome-wm
+Requires:	gtk+3 >= 3.18
 Requires:	gsettings-desktop-schemas >= 3.4.0
 Requires:	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -156,7 +157,6 @@ fi
 %{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/gnome-session/sessions/gnome-dummy.session
-%{_datadir}/gnome-session/sessions/gnome-wayland.session
 %{_datadir}/wayland-sessions/gnome-wayland.desktop
 %{_datadir}/xsessions/gnome.desktop
 %{_iconsdir}/hicolor/*/*/session-properties.*
