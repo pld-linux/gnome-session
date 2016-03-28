@@ -1,0 +1,11 @@
+--- gnome-session-3.20.0/gnome-session/main.c.setenv	2016-03-28 13:44:36.244028373 +0200
++++ gnome-session-3.20.0/gnome-session/main.c	2016-03-28 13:44:52.829257212 +0200
+@@ -380,7 +380,7 @@ main (int argc, char **argv)
+          * set a fallback value if we don't find it set.
+          */
+         if (g_getenv ("XDG_CURRENT_DESKTOP") == NULL)
+-            gsm_util_setenv ("XDG_CURRENT_DESKTOP", "GNOME");
++            g_setenv ("XDG_CURRENT_DESKTOP", "GNOME", FALSE);
+ 
+         /* Push locale variables to dbus-daemon */
+         maybe_push_env_var ("LC_TIME");

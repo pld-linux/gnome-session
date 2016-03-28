@@ -15,6 +15,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.20/%{name}-%{ver
 # Source0-md5:	a15149575c5297ad92da8832005bc202
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
+Patch0:		%{name}-setenv.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	Mesa-libGL-devel
@@ -82,6 +83,7 @@ graficznego GNOME.
 
 %prep
 %setup -q
+%patch0 -p1
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
