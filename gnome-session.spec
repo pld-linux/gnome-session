@@ -6,16 +6,15 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.20.0
+Version:	3.20.2
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	a15149575c5297ad92da8832005bc202
+# Source0-md5:	f2f71b012bae9f3a17b54b6384bc345a
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
-Patch0:		%{name}-setenv.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel
 BuildRequires:	Mesa-libGL-devel
@@ -83,7 +82,6 @@ graficznego GNOME.
 
 %prep
 %setup -q
-%patch0 -p1
 
 mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
