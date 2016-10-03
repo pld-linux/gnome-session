@@ -6,13 +6,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.20.2
+Version:	3.22.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	f2f71b012bae9f3a17b54b6384bc345a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.22/%{name}-%{version}.tar.xz
+# Source0-md5:	cb4b7ffb20a18f836f7a0d875a3439e6
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
@@ -52,8 +52,6 @@ Requires:	gnome-desktop >= 3.18.0
 Requires:	gnome-wm
 Requires:	gtk+3 >= 3.18
 Requires:	gsettings-desktop-schemas >= 3.4.0
-Requires:	gtk-update-icon-cache
-Requires:	hicolor-icon-theme
 Requires:	polkit-gnome >= 0.101
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
@@ -126,12 +124,10 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 %glib_compile_schemas
-%update_icon_cache hicolor
 
 %postun
 if [ "$1" = "0" ]; then
 	/sbin/ldconfig
-	%update_icon_cache hicolor
 	%glib_compile_schemas
 fi
 
@@ -143,7 +139,8 @@ fi
 %attr(755,root,root) %{_bindir}/gnome-session-quit
 %attr(755,root,root) %{_libdir}/gnome-session-binary
 %attr(755,root,root) %{_libdir}/gnome-session-check-accelerated
-%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-helper
+%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-gl-helper
+%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-gles-helper
 %attr(755,root,root) %{_libdir}/gnome-session-failed
 %{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 %{_datadir}/GConf/gsettings/gnome-session.convert
@@ -154,11 +151,9 @@ fi
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/hardware-compatibility
-%{_datadir}/gnome-session/session-properties.ui
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/gnome-session/sessions/gnome-dummy.session
-%{_datadir}/wayland-sessions/gnome-wayland.desktop
+%{_datadir}/wayland-sessions/gnome.desktop
 %{_datadir}/xsessions/gnome.desktop
-%{_iconsdir}/hicolor/*/*/session-properties.*
-%{_iconsdir}/hicolor/symbolic/apps/session-properties-symbolic.svg
+%{_datadir}/xsessions/gnome-xorg.desktop
 %{_mandir}/man[15]/*
