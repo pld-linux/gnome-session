@@ -6,18 +6,20 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.22.2
+Version:	3.24.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	6ff071ca67ae7516e97e4b7b78bc82fc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.24/%{name}-%{version}.tar.xz
+# Source0-md5:	759193c35c7f39f699d8a07a05409e76
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
+BuildRequires:	EGL-devel
 BuildRequires:	GConf2-devel
 BuildRequires:	Mesa-libGL-devel
+BuildRequires:	OpenGLESv2-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	dbus-glib-devel >= 0.76
@@ -28,6 +30,7 @@ BuildRequires:	gnome-desktop-devel >= 3.18.0
 BuildRequires:	gtk+3-devel >= 3.18.0
 BuildRequires:	intltool >= 0.40.6
 BuildRequires:	json-glib-devel >= 0.10
+BuildRequires:	libepoxy-devel
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
 BuildRequires:	perl-base
@@ -50,8 +53,8 @@ Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
 Requires:	gnome-desktop >= 3.18.0
 Requires:	gnome-wm
-Requires:	gtk+3 >= 3.18
 Requires:	gsettings-desktop-schemas >= 3.4.0
+Requires:	gtk+3 >= 3.18
 Requires:	polkit-gnome >= 0.101
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
