@@ -7,7 +7,7 @@ Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	3.24.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		X11/Applications
@@ -52,6 +52,8 @@ Requires(post,postun):	glib2 >= 1:2.46.0
 Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
 Requires:	gnome-desktop >= 3.18.0
+Requires:	gnome-settings-daemon >= 3.24.0
+Requires:	gnome-shell >= 3.24.0
 Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 3.4.0
 Requires:	gtk+3 >= 3.18
