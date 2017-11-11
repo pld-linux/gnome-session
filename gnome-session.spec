@@ -6,23 +6,22 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.24.1
+Version:	3.26.1
 Release:	1
 Epoch:		1
-License:	LGPL
+License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.24/%{name}-%{version}.tar.xz
-# Source0-md5:	210ed46444e5b8da89d2963ec2f62e7e
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.26/%{name}-%{version}.tar.xz
+# Source0-md5:	4c108adbf6ebe25486d41a9bc8cc340c
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	EGL-devel
-BuildRequires:	GConf2-devel
 BuildRequires:	Mesa-libGL-devel
 BuildRequires:	OpenGLESv2-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	dbus-glib-devel >= 0.76
+%{?with_consolekit:BuildRequires:	dbus-glib-devel >= 0.76}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.46.0
 BuildRequires:	gnome-common >= 2.24.0
@@ -38,10 +37,11 @@ BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	polkit-devel
 BuildRequires:	rpmbuild(macros) >= 1.601
 BuildRequires:	sed >= 4.0
-%{?with_systemd:BuildRequires:	systemd-devel >= 209}
+%{?with_systemd:BuildRequires:	systemd-devel >= 1:209}
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXau-devel
 BuildRequires:	xorg-lib-libXcomposite-devel
 BuildRequires:	xorg-lib-libXext-devel
@@ -52,11 +52,12 @@ Requires(post,postun):	glib2 >= 1:2.46.0
 Requires:	dbus-x11
 Requires:	gnome-control-center >= 1:3.4.0
 Requires:	gnome-desktop >= 3.18.0
-Requires:	gnome-settings-daemon >= 3.24.0
+Requires:	gnome-settings-daemon >= 3.26.0
 Requires:	gnome-shell >= 3.24.0
 Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 3.4.0
-Requires:	gtk+3 >= 3.18
+Requires:	gtk+3 >= 3.18.0
+Requires:	json-glib >= 0.10
 Requires:	polkit-gnome >= 0.101
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
@@ -102,8 +103,8 @@ find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst)
 	%{__enable_disable systemd systemd} \
 	%{__enable_disable consolekit consolekit} \
 	--disable-silent-rules \
-	X_EXTRA_LIBS="-lXext" \
 	--disable-gconf
+#	X_EXTRA_LIBS="-lXext" \
 
 %{__make}
 
@@ -161,4 +162,6 @@ fi
 %{_datadir}/wayland-sessions/gnome.desktop
 %{_datadir}/xsessions/gnome.desktop
 %{_datadir}/xsessions/gnome-xorg.desktop
-%{_mandir}/man[15]/*
+%{_mandir}/man1/gnome-session.1*
+%{_mandir}/man1/gnome-session-inhibit.1*
+%{_mandir}/man1/gnome-session-quit.1*
