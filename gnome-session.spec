@@ -143,11 +143,11 @@ fi
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-inhibit
 %attr(755,root,root) %{_bindir}/gnome-session-quit
-%attr(755,root,root) %{_libdir}/gnome-session-binary
-%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated
-%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-gl-helper
-%attr(755,root,root) %{_libdir}/gnome-session-check-accelerated-gles-helper
-%attr(755,root,root) %{_libdir}/gnome-session-failed
+%attr(755,root,root) %{_libexecdir}/gnome-session-binary
+%attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated
+%attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated-gl-helper
+%attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated-gles-helper
+%attr(755,root,root) %{_libexecdir}/gnome-session-failed
 %{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 %{_datadir}/GConf/gsettings/gnome-session.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
