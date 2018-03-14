@@ -6,32 +6,29 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.26.1
+Version:	3.28.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.26/%{name}-%{version}.tar.xz
-# Source0-md5:	4c108adbf6ebe25486d41a9bc8cc340c
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.28/%{name}-%{version}.tar.xz
+# Source0-md5:	6bdd34c566a0e1d1c7ca7e7dbd6ba055
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
 URL:		http://www.gnome.org/
 BuildRequires:	EGL-devel
 BuildRequires:	Mesa-libGL-devel
 BuildRequires:	OpenGLESv2-devel
-BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake >= 1:1.11
 %{?with_consolekit:BuildRequires:	dbus-glib-devel >= 0.76}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.46.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 3.18.0
 BuildRequires:	gtk+3-devel >= 3.18.0
-BuildRequires:	intltool >= 0.40.6
 BuildRequires:	json-glib-devel >= 0.10
 BuildRequires:	libepoxy-devel
-BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxslt-progs
+BuildRequires:	meson >= 0.43.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	polkit-devel
@@ -91,22 +88,10 @@ mv ChangeLog main-ChangeLog
 find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %build
-%{__glib_gettextize}
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--enable-ipv6 \
-	%{__enable_disable systemd systemd} \
-	%{__enable_disable consolekit consolekit} \
-	--disable-silent-rules \
-	--disable-gconf
-#	X_EXTRA_LIBS="-lXext" \
-
-%{__make}
+%meson build \
+	-Dsystemd=%{?with_systemd:true}%{!?with_systemd:false} \
+	-Dsystemd=%{?with_consolekit:true}%{!?with_consolekit:false}
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -115,8 +100,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install -C build
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
@@ -141,6 +125,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS *ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-session
+%attr(755,root,root) %{_bindir}/gnome-session-custom-session
 %attr(755,root,root) %{_bindir}/gnome-session-inhibit
 %attr(755,root,root) %{_bindir}/gnome-session-quit
 %attr(755,root,root) %{_libexecdir}/gnome-session-binary
