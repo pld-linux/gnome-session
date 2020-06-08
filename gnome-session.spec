@@ -7,16 +7,16 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.34.2
-Release:	2
+Version:	3.36.0
+Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	38dcdb844a0349cc2fb10998095543e4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.36/%{name}-%{version}.tar.xz
+# Source0-md5:	cd23e30c4991ca1f477020c67ea3a540
 Source1:	%{name}-gnome.desktop
 Source2:	polkit-gnome-authentication-agent-1.desktop
-URL:		http://www.gnome.org/
+URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
 BuildRequires:	Mesa-libGL-devel
 BuildRequires:	OpenGLESv2-devel
@@ -35,12 +35,14 @@ BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 %{?with_systemd:BuildRequires:	systemd-devel >= 1:209}
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXcomposite-devel
 BuildRequires:	xorg-lib-xtrans-devel
+BuildRequires:	xz
 Requires(post,postun):	glib2 >= 1:2.46.0
 %{?with_consolekit:Requires:	dbus-glib >= 0.76}
 Requires:	dbus-x11
@@ -79,13 +81,14 @@ graficznego GNOME.
 %prep
 %setup -q
 
-mv ChangeLog main-ChangeLog
-find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
+#%{__mv} ChangeLog main-ChangeLog
+#find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
 
 %build
 %meson build \
-	-Dsystemd=%{?with_systemd:true}%{!?with_systemd:false} \
-	-Dsystemd=%{?with_consolekit:true}%{!?with_consolekit:false}
+	-Dconsolekit=%{?with_consolekit:true}%{!?with_consolekit:false} \
+	-Dsession_selector=true \
+	-Dsystemd=%{?with_systemd:true}%{!?with_systemd:false}
 
 %ninja_build -C build
 
@@ -127,6 +130,7 @@ fi
 %attr(755,root,root) %{_bindir}/gnome-session-custom-session
 %attr(755,root,root) %{_bindir}/gnome-session-inhibit
 %attr(755,root,root) %{_bindir}/gnome-session-quit
+%attr(755,root,root) %{_bindir}/gnome-session-selector
 %attr(755,root,root) %{_libexecdir}/gnome-session-binary
 %attr(755,root,root) %{_libexecdir}/gnome-session-ctl
 %attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated
@@ -142,10 +146,12 @@ fi
 %dir %{_datadir}/gnome-session
 %dir %{_datadir}/gnome-session/sessions
 %{_datadir}/gnome-session/hardware-compatibility
+%{_datadir}/gnome-session/session-selector.ui
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/gnome-session/sessions/gnome-dummy.session
 %{_datadir}/wayland-sessions/gnome.desktop
 %{_datadir}/xsessions/gnome.desktop
+%{_datadir}/xsessions/gnome-custom-session.desktop
 %{_datadir}/xsessions/gnome-xorg.desktop
 %{systemduserunitdir}/gnome-session-failed.service
 %{systemduserunitdir}/gnome-session-failed.target
@@ -167,3 +173,4 @@ fi
 %{_mandir}/man1/gnome-session.1*
 %{_mandir}/man1/gnome-session-inhibit.1*
 %{_mandir}/man1/gnome-session-quit.1*
+%{_mandir}/man1/gnome-session-selector.1*
