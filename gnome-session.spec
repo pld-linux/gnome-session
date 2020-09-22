@@ -7,15 +7,14 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	3.36.0
+Version:	3.38.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.36/%{name}-%{version}.tar.xz
-# Source0-md5:	cd23e30c4991ca1f477020c67ea3a540
-Source1:	%{name}-gnome.desktop
-Source2:	polkit-gnome-authentication-agent-1.desktop
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-session/3.38/%{name}-%{version}.tar.xz
+# Source0-md5:	736024b46e2542b9b68adaa43f754f49
+Source1:	polkit-gnome-authentication-agent-1.desktop
 URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
 BuildRequires:	Mesa-libGL-devel
@@ -23,18 +22,19 @@ BuildRequires:	OpenGLESv2-devel
 %{?with_consolekit:BuildRequires:	dbus-glib-devel >= 0.76}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.46.0
-BuildRequires:	gnome-desktop-devel >= 3.18.0
-BuildRequires:	gtk+3-devel >= 3.18.0
+BuildRequires:	gnome-desktop-devel >= 3.34.2
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	json-glib-devel >= 0.10
 BuildRequires:	libepoxy-devel
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 0.43.0
+BuildRequires:	meson >= 0.53.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 %{?with_systemd:BuildRequires:	systemd-devel >= 1:209}
+BuildRequires:	systemd-units >= 1:242
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xmlto
 BuildRequires:	xorg-lib-libICE-devel
@@ -47,14 +47,15 @@ Requires(post,postun):	glib2 >= 1:2.46.0
 %{?with_consolekit:Requires:	dbus-glib >= 0.76}
 Requires:	dbus-x11
 Requires:	glib2 >= 1:2.46.0
-Requires:	gnome-desktop >= 3.18.0
+Requires:	gnome-desktop >= 3.34.2
 Requires:	gnome-settings-daemon >= 3.26.0
 Requires:	gnome-shell >= 3.24.0
 Requires:	gnome-wm
 Requires:	gsettings-desktop-schemas >= 3.4.0
-Requires:	gtk+3 >= 3.18.0
+Requires:	gtk+3 >= 3.22.0
 Requires:	json-glib >= 0.10
 Requires:	polkit-gnome >= 0.101
+Requires:	systemd-units >= 1:242
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
 Obsoletes:	gnome-splash-gnome < 1:2.32.0
@@ -81,9 +82,6 @@ graficznego GNOME.
 %prep
 %setup -q
 
-#%{__mv} ChangeLog main-ChangeLog
-#find . -name ChangeLog |awk '{src=$0; dst=$0;sub("^./","",dst);gsub("/","-",dst); print "cp " src " " dst}'|sh
-
 %build
 %meson build \
 	-Dconsolekit=%{?with_consolekit:true}%{!?with_consolekit:false} \
@@ -101,9 +99,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
 
 %ninja_install -C build
 
-install -d $RPM_BUILD_ROOT%{_datadir}/xsessions
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/xsessions/gnome.desktop
-sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE2} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
+sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE1} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/gnome-session/dbus/*.html
@@ -153,6 +149,8 @@ fi
 %{_datadir}/xsessions/gnome.desktop
 %{_datadir}/xsessions/gnome-custom-session.desktop
 %{_datadir}/xsessions/gnome-xorg.desktop
+%dir %{systemduserunitdir}/gnome-launched-.scope.d
+%{systemduserunitdir}/gnome-launched-.scope.d/override.conf
 %{systemduserunitdir}/gnome-session-failed.service
 %{systemduserunitdir}/gnome-session-failed.target
 %{systemduserunitdir}/gnome-session-initialized.target
@@ -166,10 +164,13 @@ fi
 %{systemduserunitdir}/gnome-session-wayland.target
 %{systemduserunitdir}/gnome-session-wayland@.target
 %{systemduserunitdir}/gnome-session-x11-services.target
+%{systemduserunitdir}/gnome-session-x11-services-ready.target
 %{systemduserunitdir}/gnome-session-x11.target
 %{systemduserunitdir}/gnome-session-x11@.target
 %{systemduserunitdir}/gnome-session.target
 %{systemduserunitdir}/gnome-session@.target
+%dir %{systemduserunitdir}/gnome-session@gnome.target.d
+%{systemduserunitdir}/gnome-session@gnome.target.d/gnome.session.conf
 %{_mandir}/man1/gnome-session.1*
 %{_mandir}/man1/gnome-session-inhibit.1*
 %{_mandir}/man1/gnome-session-quit.1*
