@@ -7,17 +7,17 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	40.1.1
+Version:	41.3
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-session/40/%{name}-%{version}.tar.xz
-# Source0-md5:	4fe52c247137b0c9329ca4ddfe9f0070
+Source0:	https://download.gnome.org/sources/gnome-session/41/%{name}-%{version}.tar.xz
+# Source0-md5:	f0ccb8a21871a7dce3c3b104fe33a31a
 Source1:	polkit-gnome-authentication-agent-1.desktop
 URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
-BuildRequires:	Mesa-libGL-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGLESv2-devel
 %{?with_consolekit:BuildRequires:	dbus-glib-devel >= 0.76}
 BuildRequires:	gettext-tools
@@ -33,7 +33,7 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
-%{?with_systemd:BuildRequires:	systemd-devel >= 1:209}
+%{?with_systemd:BuildRequires:	systemd-devel >= 1:242}
 BuildRequires:	systemd-units >= 1:242
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xmlto
@@ -55,6 +55,7 @@ Requires:	gsettings-desktop-schemas >= 3.4.0
 Requires:	gtk+3 >= 3.22.0
 Requires:	json-glib >= 0.10
 Requires:	polkit-gnome >= 0.101
+Requires:	systemd-libs >= 1:242
 Requires:	systemd-units >= 1:242
 # needs notification-daemon in fallback mode to function
 Requires:	dbus(org.freedesktop.Notifications)
@@ -146,6 +147,7 @@ fi
 %{_datadir}/gnome-session/sessions/gnome.session
 %{_datadir}/gnome-session/sessions/gnome-dummy.session
 %{_datadir}/wayland-sessions/gnome.desktop
+%{_datadir}/wayland-sessions/gnome-wayland.desktop
 %{_datadir}/xsessions/gnome.desktop
 %{_datadir}/xsessions/gnome-custom-session.desktop
 %{_datadir}/xsessions/gnome-xorg.desktop
