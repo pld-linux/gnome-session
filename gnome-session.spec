@@ -7,13 +7,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	43.0
+Version:	44.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-session/43/%{name}-%{version}.tar.xz
-# Source0-md5:	02ae90bc41fd06e780169b760fb55670
+Source0:	https://download.gnome.org/sources/gnome-session/44/%{name}-%{version}.tar.xz
+# Source0-md5:	0223353306fb2e5b84bd42e3fde905f0
 Source1:	polkit-gnome-authentication-agent-1.desktop
 URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
@@ -104,6 +104,9 @@ sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE1} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/a
 
 # packaged as %doc
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/gnome-session/dbus/*.html
+
+# not supported by glibc (as of 2.37)
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
 %find_lang %{name} --with-gnome --all-name
 
