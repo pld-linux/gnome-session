@@ -8,7 +8,7 @@ Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
 Version:	44.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
@@ -94,9 +94,8 @@ graficznego GNOME.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/autostart
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/default-session
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/shutdown
+install -d $RPM_BUILD_ROOT%{systemduserunitdir}/gnome-session.target.wants
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,default-session,shutdown}
 
 %ninja_install -C build
 
@@ -173,6 +172,7 @@ fi
 %{systemduserunitdir}/gnome-session-x11.target
 %{systemduserunitdir}/gnome-session-x11@.target
 %{systemduserunitdir}/gnome-session.target
+%dir %{systemduserunitdir}/gnome-session.target.wants
 %{systemduserunitdir}/gnome-session@.target
 %dir %{systemduserunitdir}/gnome-session@gnome.target.d
 %{systemduserunitdir}/gnome-session@gnome.target.d/gnome.session.conf
