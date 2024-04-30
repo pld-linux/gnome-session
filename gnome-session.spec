@@ -1,25 +1,19 @@
 # TODO: is polkit-gnome still used?
-#
-# Conditiional build:
-%bcond_without	systemd		# disable systemd tracking support
-%bcond_without	consolekit	# disable ConsoleKit tracking support (when systemd is enabled use as a fallback)
-#
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	45.0
+Version:	46.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-session/45/%{name}-%{version}.tar.xz
-# Source0-md5:	6702feed0873bb1ded999970ffddd096
+Source0:	https://download.gnome.org/sources/gnome-session/46/%{name}-%{version}.tar.xz
+# Source0-md5:	f68f71cb53d650916f9ef9cb6076f643
 Source1:	polkit-gnome-authentication-agent-1.desktop
 URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
 BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGLESv2-devel
-%{?with_consolekit:BuildRequires:	dbus-glib-devel >= 0.76}
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.46.0
 BuildRequires:	gnome-desktop-devel >= 3.34.2
@@ -27,13 +21,13 @@ BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	json-glib-devel >= 0.10
 BuildRequires:	libepoxy-devel
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 0.53.0
+BuildRequires:	meson >= 0.60.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
-%{?with_systemd:BuildRequires:	systemd-devel >= 1:242}
+BuildRequires:	systemd-devel >= 1:242
 BuildRequires:	systemd-units >= 1:242
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xmlto
@@ -44,7 +38,6 @@ BuildRequires:	xorg-lib-libXcomposite-devel
 BuildRequires:	xorg-lib-xtrans-devel
 BuildRequires:	xz
 Requires(post,postun):	glib2 >= 1:2.46.0
-%{?with_consolekit:Requires:	dbus-glib >= 0.76}
 Requires:	dbus-x11
 Requires:	glib2 >= 1:2.46.0
 Requires:	gnome-desktop >= 3.34.2
@@ -85,9 +78,8 @@ graficznego GNOME.
 
 %build
 %meson build \
-	-Dconsolekit=%{?with_consolekit:true}%{!?with_consolekit:false} \
 	-Dsession_selector=true \
-	-Dsystemd=%{?with_systemd:true}%{!?with_systemd:false}
+	-Dsystemduserunitdir=%{systemduserunitdir}
 
 %ninja_build -C build
 
@@ -137,7 +129,6 @@ fi
 %attr(755,root,root) %{_libexecdir}/gnome-session-check-accelerated-gles-helper
 %attr(755,root,root) %{_libexecdir}/gnome-session-failed
 %{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
-%{_datadir}/GConf/gsettings/gnome-session.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.SessionManager.gschema.xml
 %dir %{_datadir}/gnome/autostart
 %dir %{_datadir}/gnome/default-session
