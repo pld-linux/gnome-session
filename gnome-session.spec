@@ -2,13 +2,13 @@
 Summary:	Session support tools for the GNOME GUI desktop environment
 Summary(pl.UTF-8):	Programy obsługujęce sesję dla środowiska graficznego GNOME
 Name:		gnome-session
-Version:	47.0.1
+Version:	48.0
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-session/47/%{name}-%{version}.tar.xz
-# Source0-md5:	b234428ca39e494db57fb88613c71f6f
+Source0:	https://download.gnome.org/sources/gnome-session/48/%{name}-%{version}.tar.xz
+# Source0-md5:	7b06c3d7aff4c13be55fe90a3a8bb0c4
 Source1:	polkit-gnome-authentication-agent-1.desktop
 URL:		https://wiki.gnome.org/Projects/SessionManagement
 BuildRequires:	EGL-devel
@@ -77,11 +77,11 @@ graficznego GNOME.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	-Dsession_selector=true \
 	-Dsystemduserunitdir=%{systemduserunitdir}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -89,7 +89,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
 install -d $RPM_BUILD_ROOT%{systemduserunitdir}/gnome-session.target.wants
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/{autostart,default-session,shutdown}
 
-%ninja_install -C build
+%meson_install
 
 sed -e 's,@LIBDIR@,%{_libdir},' %{SOURCE1} > $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/polkit-gnome-authentication-agent-1.desktop
 
@@ -116,7 +116,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README build/doc/dbus/gnome-session.html
+%doc AUTHORS MAINTAINERS NEWS README.md build/doc/dbus/gnome-session.html
 %attr(755,root,root) %{_bindir}/gnome-session
 %attr(755,root,root) %{_bindir}/gnome-session-custom-session
 %attr(755,root,root) %{_bindir}/gnome-session-inhibit
